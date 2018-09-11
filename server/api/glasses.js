@@ -50,7 +50,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   const glassesId = req.params.id
   try {
-    let deletedGlasses = await Glasses.destroy({
+    const deletedGlasses = await Glasses.destroy({
       id: glassesId
     })
     if (deletedGlasses) res.json(deletedGlasses)
