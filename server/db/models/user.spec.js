@@ -1,12 +1,12 @@
 /* global describe beforeEach it */
 
-const {expect} = require('chai')
+const { expect } = require('chai')
 const db = require('../index')
 const User = db.model('user')
 
 xdescribe('User model', () => {
   beforeEach(() => {
-    return db.sync({force: true})
+    return db.sync({ force: true })
   })
 
   describe('instanceMethods', () => {
@@ -16,7 +16,7 @@ xdescribe('User model', () => {
       beforeEach(async () => {
         cody = await User.create({
           email: 'cody@puppybook.com',
-          password: 'bones'
+          password: 'bones',
         })
       })
 
