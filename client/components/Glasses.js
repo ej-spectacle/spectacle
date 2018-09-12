@@ -10,6 +10,7 @@ class Glasses extends Component {
 
   render() {
     const { allGlasses } = this.props
+
     return (
       <div className="view">
         <h1>All Products</h1>

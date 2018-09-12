@@ -5,7 +5,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      exclude: password
+      exclude: password,
     })
     res.json(users)
   } catch (err) {
@@ -31,7 +31,7 @@ router.post('/', async (req, res, next) => {
       email: req.body.email,
       password: req.body.password,
       address: req.body.address,
-      isAdmin: false
+      isAdmin: false,
     })
     res.status(201).json(user)
   } catch (err) {
