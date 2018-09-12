@@ -23,6 +23,7 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+//CG: Shouldw e have this route? Doesn't auth have a login / signup route already?
 router.post('/', async (req, res, next) => {
   try {
     const user = await User.create({

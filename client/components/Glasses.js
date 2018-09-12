@@ -3,15 +3,25 @@ import { connect } from 'react-redux'
 // import { NavLink } from 'react-router-dom'
 import { fetchGlasses } from '../store'
 
+//CG: I shouldn't see any divs that don't a related identifier in a particular component.
 class Glasses extends Component {
   componentDidMount() {
-    this.props.getGlasses()
+    //CG: checking if you have glasses already in your reducer. 
+    // if(!this.props.allGlasses){
+      this.props.getGlasses()
+    // }
   }
 
+  //CG: top-level usually denotes the component i'm in or the wrapper .
+  //products-container
+  //all-products
+  //all-products-single-card
+  //all-products-single-card-image
+  //all-products-single-card-text
   render() {
     const { allGlasses } = this.props
     return (
-      <div className="view">
+      <div className="products">
         <h1>All Products</h1>
         <div className="all-products">
           {allGlasses.map(glasses => {

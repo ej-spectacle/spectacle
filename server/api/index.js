@@ -9,3 +9,6 @@ router.use((req, res, next) => {
   error.status = 404
   next(error)
 })
+
+// CG: /glasses?color=blue
+// CG: /users/:userId/orders --> think about the same thing for cart. 

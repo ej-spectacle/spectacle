@@ -18,6 +18,7 @@ router.get('/:id', async (req, res, next) => {
   try {
     const glasses = await Glasses.findById(glassesId)
     if (glasses) res.send(glasses)
+    //CG: this is going to be a problem here we need an else... if there isn't one maybe send a 404?
   } catch (err) {
     next(err)
   }
