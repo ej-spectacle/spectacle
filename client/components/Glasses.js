@@ -11,15 +11,14 @@ class Glasses extends Component {
   render() {
     const { allGlasses } = this.props
     return (
-      <div>
+      <div className="view">
         <h1>All Products</h1>
-        <div>
+        <div className="all-products">
           {allGlasses.map(glasses => {
             return (
-              <div key={glasses.id}>
+              <div className="single-product" key={glasses.id}>
                 <img src={glasses.imageUrl} />
                 <h3>{glasses.name}</h3>
-                <br />
                 <h3>{glasses.price}</h3>
               </div>
             )

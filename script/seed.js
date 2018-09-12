@@ -9,7 +9,7 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({ email: 'cody@email.com', password: '123' }),
-    User.create({ email: 'murphy@email.com', password: '123' })
+    User.create({ email: 'murphy@email.com', password: '123' }),
   ])
 
   const glasses = await Promise.all([
@@ -18,7 +18,7 @@ async function seed() {
     Glasses.create({ name: 'July', price: 300 }),
     Glasses.create({ name: 'August', price: 550 }),
     Glasses.create({ name: 'March', price: 300 }),
-    Glasses.create({ name: 'April', price: 350 })
+    Glasses.create({ name: 'April', price: 350 }),
   ])
 
   console.log(`seeded ${users.length} users, ${glasses.length} glasses`)
