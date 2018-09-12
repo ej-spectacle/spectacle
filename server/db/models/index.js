@@ -4,11 +4,14 @@ const Glasses = require('./glasses')
 const Order = require('./order')
 
 //associations
-Item.belongsTo(Glasses);
-Item.belongsTo(User);
-Order.hasMany(Item);
-Item.belongsTo(Order);
+Item.belongsTo(Glasses)
+Item.belongsTo(User)
+Order.hasMany(Item)
+Item.belongsTo(Order)
 
 module.exports = {
-  User, Item, Glasses, Order
+  User,
+  Item,
+  Glasses,
+  Order,
 }

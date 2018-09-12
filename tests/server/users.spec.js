@@ -1,6 +1,6 @@
 /* global describe beforeEach it */
 
-const {expect} = require('chai')
+const { expect } = require('chai')
 const request = require('supertest')
 const db = require('../../server/db')
 const app = require('../../server/api/index')
@@ -8,7 +8,7 @@ const User = db.model('user')
 
 xdescribe('User routes', () => {
   beforeEach(() => {
-    return db.sync({force: true})
+    return db.sync({ force: true })
   })
 
   describe('/api/users/', () => {
@@ -16,7 +16,7 @@ xdescribe('User routes', () => {
 
     beforeEach(() => {
       return User.create({
-        email: codysEmail
+        email: codysEmail,
       })
     })
 
