@@ -2,14 +2,6 @@ import axios from 'axios';
 import history from '../history';
 
 /**
- * INITIAL STATE
- */
-const initialState = {
-  glasses: [],
-  singleGlasses: {},
-};
-
-/**
  * ACTION TYPES
  */
 const GET_GLASSES = 'GET_GLASSES';
@@ -45,12 +37,12 @@ export const fetchSingleGlasses = id => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = initialState, action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_GLASSES:
-      return { ...state, glasses: action.glasses };
+      return action.glasses;
     case GET_SINGLE_GLASSES:
-      return { ...state, singleGlasses: action.singleGlasses };
+      return [action.singleGlasses];
     default:
       return state;
   }
