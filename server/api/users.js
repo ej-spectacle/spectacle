@@ -23,17 +23,12 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.get('/:id/orders', async (req, res, next) => {
   try {
-    const user = await User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      address: req.body.address,
-      isAdmin: false
+    const user = await User.findById(req.params.id, {
+      include: ({ model: Order })
     })
-    res.status(201).json(user)
+    res.json(user.orders)
   } catch (err) {
     next(err)
   }
@@ -52,7 +47,7 @@ router.put('/:id', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id)
-    user.destroy()
+    await user.destroy()
     res.status(204).end()
   } catch (err) {
     next(err)
