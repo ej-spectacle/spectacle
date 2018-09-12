@@ -11,14 +11,15 @@ const Glasses = db.define('glasses', {
         type: Sequelize.INTEGER,
         allowNull: false
     },
-  imageUrl: {
-      type: Sequelize.STRING,
-      allowNull: false
-  },
-  available: {
-      type: Sequelize.BOOLEAN,
-      defaultValue: true
-  }
+    imageUrl: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        defaultValue: '/glasses/default.png'
+    },
+    available: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true
+    }
 });
 
 module.exports = Glasses;
