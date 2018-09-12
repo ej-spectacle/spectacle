@@ -13,7 +13,7 @@ import Glasses from './components/Glasses'
 ReactDOM.render(
   <Provider store={store}>
     <Router history={history}>
-      <Glasses />
+      <App />
     </Router>
   </Provider>,
   document.getElementById('app')
