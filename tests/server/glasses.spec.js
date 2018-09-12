@@ -1,16 +1,9 @@
 const db = require('../../server/db/')
 const {Glasses} = require('../../server/db/models/')
-const Promise = require('bluebird');
 const chai = require('chai');
 const expect = chai.expect;
-const sinon = require('sinon');
-const sinonChai = require('sinon-chai');
-chai.use(sinonChai);
-
-console.log("run");
 
 describe("The Glasses model", () => {
-   console.log('checking glasses model');
     before(() => {
         return db.sync({force: true});
     });
@@ -20,13 +13,11 @@ describe("The Glasses model", () => {
         glasses = Glasses.build({
             name: 'Red glasses',
             price: 20000,
-            imageUrl: 'someUrl',
+            imageUrl: 'someUrl'
         })
     })
 
-    describe("Attributes",  () =>{
-       console.log('checking attribute')
-       
+    describe("Attributes",  () =>{       
         it("Includes name, price, and image url attributes", async ()=> {
             const savedGlasses = await glasses.save();
             expect(savedGlasses.name).to.equal("Red glasses");
