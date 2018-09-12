@@ -25,18 +25,8 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/:id/orders', async (req, res, next) => {
   try {
-<<<<<<< HEAD
-    const user = await User.create({
-      firstName: req.body.firstName,
-      lastName: req.body.lastName,
-      email: req.body.email,
-      password: req.body.password,
-      address: req.body.address,
-      isAdmin: false,
-=======
     const user = await User.findById(req.params.id, {
-      include: ({ model: Order })
->>>>>>> master
+      include: { model: Order },
     })
     res.json(user.orders)
   } catch (err) {
@@ -46,7 +36,7 @@ router.get('/:id/orders', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const user = await User.findById(req.params.id)
+    let user = await User.findById(req.params.id)
     user = await user.update(req.body)
     res.json(user)
   } catch (err) {
