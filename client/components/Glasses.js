@@ -19,7 +19,7 @@ class Glasses extends Component {
               <div className="single-product" key={glasses.id}>
                 <img src={glasses.imageUrl} />
                 <h3>{glasses.name}</h3>
-                <h3>{glasses.price}</h3>
+                <h3>${glasses.price}</h3>
               </div>
             );
           })}

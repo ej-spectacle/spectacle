@@ -14,7 +14,7 @@ class SingleGlasses extends Component {
         <img className="single-glasses-image" src={singleGlasses.imageUrl} />
         <div className="single-glasses-info">
           <h3>{singleGlasses.name}</h3>
-          <h4>{singleGlasses.price}</h4>
+          <h3>${singleGlasses.price}</h3>
         </div>
         <button type="submit">Add To Cart</button>
       </div>
