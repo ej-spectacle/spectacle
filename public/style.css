@@ -19,3 +19,37 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+h3 {
+  color: green;
+  margin: 5px;
+}
+
+img {
+  width: 250px;
+  height: 250px;
+}
+
+.all-products {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.single-product {
+  height: 300px;
+  width: 300px;
+  border: 1px solid black;
+  margin-bottom: 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.view {
+  width: 80vw;
+  margin: 0 auto;
+}
