@@ -1,8 +1,8 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { logout } from '../store'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { logout } from '../store';
 
 const Navbar = ({ handleClick, isLoggedIn, userEmail }) => (
   <div>
@@ -17,9 +17,7 @@ const Navbar = ({ handleClick, isLoggedIn, userEmail }) => (
           <div>
             {/* The navbar will show these links after you log in */}
             <div className="dropdown">
-              <button className="dropbtn">
-                {userEmail}
-              </button>
+              <button className="dropbtn">{userEmail}</button>
               <div className="dropdown-content">
                 <a href="#">Dashboard</a>
                 <a href="#">Order History</a>
@@ -27,21 +25,21 @@ const Navbar = ({ handleClick, isLoggedIn, userEmail }) => (
             </div>
             <a href="#" onClick={handleClick}>
               Logout
-          </a>
+            </a>
           </div>
         ) : (
-            <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to="/login">Login</Link>
-              <Link to="/signup">Sign Up</Link>
-            </div>
-          )}
+          <div>
+            {/* The navbar will show these links before you log in */}
+            <Link to="/login">Login</Link>
+            <Link to="/signup">Sign Up</Link>
+          </div>
+        )}
         <a>Cart</a>
       </div>
     </nav>
     <hr />
   </div>
-)
+);
 
 /**
  * CONTAINER
@@ -49,19 +47,19 @@ const Navbar = ({ handleClick, isLoggedIn, userEmail }) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    userEmail: state.user.email
-  }
-}
+    userEmail: state.user.email,
+  };
+};
 
 const mapDispatch = dispatch => {
   return {
     handleClick() {
-      dispatch(logout())
+      dispatch(logout());
     },
-  }
-}
+  };
+};
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(Navbar);
 
 /**
  * PROP TYPES
@@ -69,4 +67,4 @@ export default connect(mapState, mapDispatch)(Navbar)
 Navbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
-}
+};

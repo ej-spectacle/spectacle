@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Item = db.define('item', {
   date: {
@@ -13,6 +13,6 @@ const Item = db.define('item', {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
-})
+});
 
-module.exports = Item
+module.exports = Item;
