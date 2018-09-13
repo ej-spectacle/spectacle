@@ -47,10 +47,7 @@ const Navbar = ({ handleClick, isLoggedIn, userEmail }) => (
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-<<<<<<< HEAD
     userEmail: state.user.email,
-=======
->>>>>>> master
   };
 };
 

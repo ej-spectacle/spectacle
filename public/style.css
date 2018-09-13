@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  color: #565656;
 }
 
 a {
@@ -26,7 +27,6 @@ form div {
 }
 
 h3 {
-  color: green;
   margin: 5px;
 }
 
@@ -42,7 +42,7 @@ img {
   flex-wrap: wrap;
 }
 
-.single-product {
+.single-card {
   height: 300px;
   width: 300px;
   border: 1px solid black;
@@ -54,7 +54,7 @@ img {
   justify-content: center;
 }
 
-.view {
+.products-container {
   width: 80vw;
   margin: 0 auto;
 }
@@ -102,4 +102,13 @@ img {
 
 .dropdown:hover .dropdown-content {
   display: block;
+}
+
+.single-card-link-wrapper {
+  text-align: center;
+  color: #565656;
+}
+
+.single-card-link-wrapper:hover {
+  color: #007ba7;
 }
