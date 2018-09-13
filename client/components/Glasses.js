@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import { fetchGlasses } from '../store';
 
 class Glasses extends Component {
@@ -11,14 +11,16 @@ class Glasses extends Component {
   render() {
     const { allGlasses } = this.props;
     return (
-      <div className="view">
+      <div className="products-container">
         <h1>All Products</h1>
         <div className="all-products">
           {allGlasses.map(glasses => {
             return (
-              <div className="single-product" key={glasses.id}>
-                <img src={glasses.imageUrl} />
-                <h3>{glasses.name}</h3>
+              <div className="single-card" key={glasses.id}>
+                <NavLink to={`/glasses/${glasses.id}`} className="single-card-link-wrapper">
+                  <img src={glasses.imageUrl} />
+                  <h3>{glasses.name}</h3>
+                </NavLink>
                 <h3>${glasses.price}</h3>
               </div>
             );

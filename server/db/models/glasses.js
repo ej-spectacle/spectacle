@@ -1,5 +1,5 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require('sequelize');
+const db = require('../db');
 
 const Glasses = db.define('glasses', {
   name: {
@@ -19,6 +19,6 @@ const Glasses = db.define('glasses', {
     type: Sequelize.BOOLEAN,
     defaultValue: true,
   },
-})
+});
 
-module.exports = Glasses
+module.exports = Glasses;
