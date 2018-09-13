@@ -4,7 +4,7 @@ const Order = require('./order');
 
 Order.belongsTo(User);
 User.hasMany(Order);
-Order.belongsTo(Glasses);
+Order.belongsTo(Glasses, { as: 'glasses' });
 
 module.exports = {
   User,
