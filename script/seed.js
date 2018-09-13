@@ -1,7 +1,7 @@
 'use strict';
 
 const db = require('../server/db');
-const { User, Glasses } = require('../server/db/models');
+const { User, Glasses, Order } = require('../server/db/models');
 
 async function seed() {
   await db.sync({ force: true });
@@ -13,15 +13,31 @@ async function seed() {
   ]);
 
   const glasses = await Promise.all([
-    Glasses.create({ name: 'May', price: 350 }),
-    Glasses.create({ name: 'June', price: 250 }),
-    Glasses.create({ name: 'July', price: 300 }),
-    Glasses.create({ name: 'August', price: 550 }),
-    Glasses.create({ name: 'March', price: 300 }),
-    Glasses.create({ name: 'April', price: 350 }),
+    Glasses.create({ name: 'Black n White', price: 3500, imageUrl: '/glasses/blacknwhite.png' }),
+    Glasses.create({ name: 'Chic', price: 2500, imageUrl: '/glasses/chic.png' }),
+    Glasses.create({ name: 'Feathers', price: 3000, imageUrl: '/glasses/feathers.png' }),
+    Glasses.create({ name: 'Gnome', price: 5500, imageUrl: '/glasses/gnome.png' }),
+    Glasses.create({ name: 'Hero', price: 3000, imageUrl: '/glasses/hero.png' }),
+    Glasses.create({ name: 'May', price: 3500, imageUrl: '/glasses/may.png' }),
+    Glasses.create({ name: 'Mirror Mirror', price: 3800, imageUrl: '/glasses/mirrorframe.png' }),
+    Glasses.create({ name: 'Sparkles', price: 2800, imageUrl: '/glasses/sparkles.png' }),
+    Glasses.create({ name: 'Windshield', price: 8500, imageUrl: '/glasses/windshield.png' }),
+    Glasses.create({ name: 'Zoom', price: 6000, imageUrl: '/glasses/zoom.png' }),
   ]);
 
-  console.log(`seeded ${users.length} users, ${glasses.length} glasses`);
+  const orders = await Promise.all([
+    Order.create({ userId: 1, glassId: 2, purchaseDate: '2018-08-09' }),
+    Order.create({ userId: 1, glassId: 4, purchaseDate: '2018-08-09' }),
+    Order.create({ userId: 2, glassId: 7, purchaseDate: '2018-08-09' }),
+    Order.create({
+      userId: 1,
+      glassId: 4,
+      purchaseDate: '2018-08-09',
+      refNumber: 'asfiuhr98ehgri8adg',
+    }),
+  ]);
+
+  console.log(`seeded ${users.length} users, ${glasses.length} glasses, ${orders.length} orders`);
   console.log(`seeded successfully`);
 }
 
