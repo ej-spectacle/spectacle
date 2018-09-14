@@ -4,7 +4,6 @@ const db = require('../db');
 const Order = db.define('order', {
   purchaseDate: {
     type: Sequelize.DATE,
-    allowNull: true,
   },
   price: {
     type: Sequelize.INTEGER,
