@@ -7,6 +7,7 @@ import glasses from './glasses';
 import order from './order';
 
 const reducer = combineReducers({ user, glasses, order });
+
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

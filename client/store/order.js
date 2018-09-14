@@ -29,7 +29,7 @@ export const fetchOrders = () => async dispatch => {
 
 export const postOrder = order => async dispatch => {
   try {
-    const res = axios.post('/api/orders', order);
+    const res = await axios.post('/api/orders', order);
     dispatch(addOrder(res.data));
   } catch (error) {
     console.log(error);
@@ -38,7 +38,7 @@ export const postOrder = order => async dispatch => {
 
 export const fetchCart = id => async dispatch => {
   try {
-    const res = axios.get(`/api/users/${id}/orders`);
+    const res = await axios.get(`/api/users/${id}/orders`);
     dispatch(getOrders(res.data));
   } catch (error) {
     console.log(error);
