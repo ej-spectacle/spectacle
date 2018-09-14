@@ -20,7 +20,6 @@ class SingleGlasses extends Component {
       glassId: singleGlasses.id,
       purchaseDate: Date.now(),
     };
-    console.log('order', order);
     if (id) order.userId = id;
     this.props.postOrder(order);
   }
