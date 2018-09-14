@@ -20,8 +20,29 @@ const addOrder = glasses => {
 
 export const fetchOrders = () => async dispatch => {
   try {
-    const res = await axios.get('/api/user/');
-  } catch (err) {}
+    const res = await axios.get('/api/orders');
+    dispatch(getOrders(res.data));
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const postOrder = order => async dispatch => {
+  try {
+    const res = axios.post('/api/orders', order);
+    dispatch(addOrder(res.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchCart = id => async dispatch => {
+  try {
+    const res = axios.get(`/api/users/${id}/orders`);
+    dispatch(getOrders(res.data));
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export default function(state = [], action) {

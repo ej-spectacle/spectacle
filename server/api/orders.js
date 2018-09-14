@@ -19,3 +19,14 @@ router.post('/', async (req, res, next) => {
     next(err);
   }
 });
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const updatedOrder = await Order.findById(req.params.id);
+    updatedOrder.update(req.body);
+    res.json(updatedOrder);
+  } catch (error) {
+    next(error);
+  }
+});
+
