@@ -4,19 +4,21 @@ import { postOrder } from '../store/order';
 import { connect } from 'react-redux';
 
 class SingleGlasses extends Component {
-  constructor() {
+  constructor(props) {
+    super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   componentDidMount() {
     this.props.getSingleGlasses(Number(this.props.match.params.id));
   }
-  
+
   handleSubmit() {
     const id = this.props.user.id;
     const singleGlasses = this.props.singleGlasses[0];
     const order = {
-      glassesId: singleGlasses.id,
+      glassId: singleGlasses.id,
+      purchaseDate: Date.now(),
     };
     if (id) order.userId = id;
     this.props.postOrder(order);
@@ -42,6 +44,7 @@ class SingleGlasses extends Component {
 const mapStateToProps = state => ({
   singleGlasses: state.glasses,
   user: state.user,
+  orders: state.order,
 });
 
 const mapDispatchToProps = dispatch => ({
