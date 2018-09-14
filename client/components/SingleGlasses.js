@@ -4,9 +4,14 @@ import { postOrder } from '../store/order';
 import { connect } from 'react-redux';
 
 class SingleGlasses extends Component {
+  constructor() {
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
   componentDidMount() {
     this.props.getSingleGlasses(Number(this.props.match.params.id));
   }
+  
   handleSubmit() {
     const id = this.props.user.id;
     const singleGlasses = this.props.singleGlasses[0];
