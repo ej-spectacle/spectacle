@@ -6,6 +6,7 @@ import { Login, Signup, UserHome } from './components';
 import { me } from './store';
 import Glasses from './components/Glasses';
 import SingleGlasses from './components/SingleGlasses';
+import Cart from './components/Cart';
 
 /**
  * COMPONENT
@@ -24,6 +25,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/glasses" component={Glasses} />
+        <Route exact path="/users/:userId/cart" component={Cart} />
         <Route exact path="/glasses/:id" component={SingleGlasses} />
 
         {isLoggedIn && (
