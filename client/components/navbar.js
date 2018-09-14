@@ -34,7 +34,7 @@ const Navbar = ({ handleClick, isLoggedIn, userEmail, user }) => (
             <Link to="/signup">Sign Up</Link>
           </div>
         )}
-        <Link to={`/users/${user.id || 0}/cart`}>Cart</Link>
+        <Link to={'/cart'}>Cart</Link>
       </div>
     </nav>
     <hr />
