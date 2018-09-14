@@ -48,7 +48,7 @@ const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
     user: state.user,
-    cartCount: state.order.length,
+    cartCount: state.orders.length,
   };
 };
 

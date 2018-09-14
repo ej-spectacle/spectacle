@@ -2,8 +2,21 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Cart extends Component {
+  componentDidMount() {}
   render() {
-    return <div>This is the cart component</div>;
+    const orders = this.props.orders || [];
+
+    return (
+      <div>
+        {orders.map(order => {
+          return (
+            <li key={order.id}>
+              {order.id} {order.price}
+            </li>
+          );
+        })}
+      </div>
+    );
   }
 }
 
