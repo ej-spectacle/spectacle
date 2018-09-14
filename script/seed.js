@@ -31,7 +31,7 @@ async function seed() {
     Order.create({ userId: 2, glassId: 7, purchaseDate: '2018-08-09' }),
     Order.create({
       userId: 1,
-      glassId: 4,
+      glassId: 5,
       purchaseDate: '2018-08-09',
       refNumber: 'asfiuhr98ehgri8adg',
     }),
