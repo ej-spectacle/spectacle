@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 class SingleGlasses extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      inCart: false,
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -33,7 +36,15 @@ class SingleGlasses extends Component {
           <h3>{singleGlasses.name}</h3>
           <h3>${singleGlasses.price}</h3>
         </div>
-        <button type="submit" onClick={this.handleSubmit}>
+        <button
+          type="submit"
+          onClick={this.handleSubmit}
+          disabled={
+            this.props.orders.filter(order => order.glassId === singleGlasses.id).length === 1
+              ? true
+              : null
+          }
+        >
           Add To Cart
         </button>
       </div>
