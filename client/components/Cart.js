@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 class Cart extends Component {
   render() {
-    console.log(this.props);
-
     return <div>This is the cart component</div>;
   }
 }
