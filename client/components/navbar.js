@@ -20,7 +20,7 @@ const Navbar = ({ handleClick, isLoggedIn, user, cartCount }) => (
               <button className="dropbtn">{user.email}</button>
               <div className="dropdown-content">
                 <a href="#">Dashboard</a>
-                <a href="#">Order History</a>
+                <a href="/orders">Order History</a>
               </div>
             </div>
             <a href="#" onClick={handleClick}>
