@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 class SingleGlasses extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inCart: false,
-    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
