@@ -28,16 +28,15 @@ router.get('/:id', async (req, res, next) => {
 router.get('/:id/orders', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id, {
-      include: { 
+      include: {
         model: Order,
         include: {
-          model: Glasses
+          model: Glasses,
         },
-        where: {refNumber: {[Op.ne]: null}}
+        where: { refNumber: { [Op.ne]: null } },
       },
-      
     });
-    if(!user){
+    if (!user) {
       //could change to a 404 error
       res.json([]);
       return;

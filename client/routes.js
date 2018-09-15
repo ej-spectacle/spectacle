@@ -7,7 +7,7 @@ import { me } from './store';
 import Glasses from './components/Glasses';
 import SingleGlasses from './components/SingleGlasses';
 import Cart from './components/Cart';
-import OrderHistory from './components/OrderHistory'
+import OrderHistory from './components/OrderHistory';
 
 /**
  * COMPONENT
