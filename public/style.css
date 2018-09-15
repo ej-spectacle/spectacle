@@ -112,3 +112,17 @@ img {
 .single-card-link-wrapper:hover {
   color: #007ba7;
 }
+
+.admin-dashboard {
+  text-align: center;
+}
+
+.user-dashboard {
+  text-align: center;
+}
+
+.admin-dashboard-user {
+  text-align: center;
+  list-style-type: none;
+  font-size: 25px;
+}
