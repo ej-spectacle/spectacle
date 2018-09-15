@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 
 class Cart extends Component {
   render() {
-    return <div>This is the cart component</div>;
+    return (
+      <div>
+        This is the cart component
+        <NavLink to="/confirmation-page">Confirmation Page</NavLink>;
+      </div>
+    );
   }
 }
 
