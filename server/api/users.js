@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const { User } = require('../db/models');
+const { User, Order, Glasses } = require('../db/models');
+const Sequelize = require('sequelize');
 module.exports = router;
+const Op = Sequelize.Op;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -26,8 +28,19 @@ router.get('/:id', async (req, res, next) => {
 router.get('/:id/orders', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id, {
-      include: { model: Order },
+      include: {
+        model: Order,
+        include: {
+          model: Glasses,
+        },
+        where: { refNumber: { [Op.ne]: null } },
+      },
     });
+    if (!user) {
+      //could change to a 404 error
+      res.json([]);
+      return;
+    }
     res.json(user.orders);
   } catch (err) {
     next(err);

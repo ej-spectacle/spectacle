@@ -7,6 +7,7 @@ import { me } from './store';
 import Glasses from './components/Glasses';
 import SingleGlasses from './components/SingleGlasses';
 import Cart from './components/Cart';
+import OrderHistory from './components/OrderHistory';
 
 /**
  * COMPONENT
@@ -25,6 +26,7 @@ class Routes extends Component {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/glasses" component={Glasses} />
+        <Route exact path="/orders" component={OrderHistory} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/glasses/:id" component={SingleGlasses} />
 
