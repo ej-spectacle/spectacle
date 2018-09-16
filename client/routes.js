@@ -7,6 +7,7 @@ import { me } from './store';
 import Glasses from './components/Glasses';
 import SingleGlasses from './components/SingleGlasses';
 import Cart from './components/Cart';
+import User from './components/User';
 import ConfirmationPage from './components/CofirmationPage';
 
 /**
@@ -28,12 +29,13 @@ class Routes extends Component {
         <Route exact path="/glasses" component={Glasses} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/glasses/:id" component={SingleGlasses} />
+        <Route path="/confirmation-page" component={ConfirmationPage} />
 
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
-            <Route path="/confirmation-page" component={ConfirmationPage} />
+            <Route path="/dashboard" component={User} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

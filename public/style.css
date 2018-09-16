@@ -113,6 +113,19 @@ img {
   color: #007ba7;
 }
 
+.admin-dashboard {
+  text-align: center;
+}
+
+.user-dashboard {
+  text-align: center;
+}
+
+.admin-dashboard-user {
+  text-align: center;
+  list-style-type: none;
+  font-size: 25px;
+
 .confirmation-page-container {
   display: flex;
   justify-content: space-around;
@@ -127,4 +140,5 @@ img {
 .confirmation-page-items {
   border: 1px solid black;
   padding: 10px 25px 45px 45px;
+
 }
