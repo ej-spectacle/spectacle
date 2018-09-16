@@ -4,6 +4,7 @@ import history from '../history';
 const GET_ORDERS = 'GET_ORDERS';
 const ADD_ORDER = 'ADD_ORDER';
 const REMOVE_ORDER = 'REMOVE_ORDER';
+const PURCHASE_ORDER = 'PURCHASE_ORDER';
 
 const getOrders = orders => {
   return {
@@ -25,6 +26,10 @@ const removeOrder = orderId => {
     orderId,
   };
 };
+
+const purchaseOrder = () => ({
+  type: PURCHASE_ORDER,
+});
 
 export const fetchAllOrders = () => async dispatch => {
   try {
@@ -53,6 +58,15 @@ export const postOrder = order => async dispatch => {
   }
 };
 
+export const purchaseAllOrders = order => async dispatch => {
+  try {
+    await axios.put(`/api/orders/${order.id}`, order);
+    dispatch(purchaseOrder());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export const deleteOrder = id => async dispatch => {
   try {
     await axios.delete(`/api/orders/${id}`);
@@ -70,6 +84,8 @@ export default function(state = [], action) {
       return [...state, action.order];
     case REMOVE_ORDER:
       return state.filter(order => order.id !== action.orderId);
+    case PURCHASE_ORDER:
+      return [];
     default:
       return state;
   }

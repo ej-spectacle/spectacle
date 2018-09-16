@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const { Order, Glasses } = require('../db/models');
+const { Order, Glasses, User } = require('../db/models');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
-      include: [{ model: Glasses }],
+      include: [{ model: Glasses }, { model: User }],
     });
     res.json(orders);
   } catch (err) {
@@ -16,10 +16,10 @@ router.get('/', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const newOrder = await Order.create(req.body);
-    const newOrderWithGlasses = await Order.findById(newOrder.id, {
-      include: [{ model: Glasses }],
+    const newOrderWithInfo = await Order.findById(newOrder.id, {
+      include: [{ model: Glasses }, { model: User }],
     });
-    res.status(201).json(newOrderWithGlasses);
+    res.status(201).json(newOrderWithInfo);
   } catch (err) {
     next(err);
   }
@@ -29,7 +29,10 @@ router.put('/:id', async (req, res, next) => {
   try {
     const updatedOrder = await Order.findById(req.params.id);
     updatedOrder.update(req.body);
-    res.json(updatedOrder);
+    const updatedOrderWithInfo = await Order.findById(req.params.id, {
+      include: [{ model: Glasses }, { model: User }],
+    });
+    res.json(updatedOrderWithInfo);
   } catch (err) {
     next(err);
   }
