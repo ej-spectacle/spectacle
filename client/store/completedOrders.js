@@ -12,7 +12,7 @@ const getOrderHistory = orders => {
 export const fetchOrderHistory = id => async dispatch => {
   console.log('dispatched!');
   try {
-    const orders = await axios.get(`/api/users/${id}/orders`);
+    const orders = await axios.get(`/api/users/${id}/completed-orders`);
     dispatch(getOrderHistory(orders.data));
   } catch (err) {
     console.log(err);

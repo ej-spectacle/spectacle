@@ -25,7 +25,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/:id/orders', async (req, res, next) => {
+router.get('/:id/completed-orders', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id, {
       include: {
@@ -33,15 +33,33 @@ router.get('/:id/orders', async (req, res, next) => {
         include: {
           model: Glasses,
         },
-        where: { refNumber: { [Op.ne]: null } },
-      },
+        where: { refNumber: { [Op.ne]: null } }, 
+      }, 
+      order: [[{model: Order}, 'purchaseDate', 'DESC']],
     });
     if (!user) {
       //could change to a 404 error
       res.json([]);
-      return;
+    } else {
+      //res.json(user.orders);
+      //return;
+      let seen = '';
+      let orderHist = [];
+      let orderRef = [];
+      for(let i = 0; i < user.orders.length; i++){
+        if (user.orders[i].refNumber !== seen){
+          //new ref number found
+          orderRef = [];
+          orderHist.push(orderRef);
+          seen = user.orders[i].refNumber;
+          orderRef.push(user.orders[i]);
+        } else {
+          orderRef.push(user.orders[i]);
+        }
+      }
+      res.json(orderHist)
     }
-    res.json(user.orders);
+
   } catch (err) {
     next(err);
   }
