@@ -1,9 +1,6 @@
 const router = require('express').Router();
 const { User, Order, Glasses } = require('../db/models');
-<<<<<<< HEAD
 const Sequelize = require('sequelize');
-=======
->>>>>>> master
 module.exports = router;
 const Op = Sequelize.Op;
 
@@ -29,7 +26,6 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
 router.get('/:id/completed-orders', async (req, res, next) => {
   try {
     const user = await User.findById(req.params.id, {
@@ -64,7 +60,7 @@ router.get('/:id/completed-orders', async (req, res, next) => {
       }
       res.json(orderHist);
     }
-=======
+
 router.get('/:id/cart', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
@@ -74,7 +70,7 @@ router.get('/:id/cart', async (req, res, next) => {
       include: [{ model: Glasses }, { model: User }],
     });
     res.json(orders);
->>>>>>> master
+
   } catch (err) {
     next(err);
   }
