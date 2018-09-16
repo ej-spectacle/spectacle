@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deleteOrder, purchaseAllOrders, fetchCart } from '../store/order';
 import { sha256 } from 'js-sha256';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Cart extends Component {
   constructor(props) {
@@ -47,7 +47,7 @@ class Cart extends Component {
           })}
         </div>
         <div className="cart-purchase">
-          <Link to="/checkout">Checkout</Link>
+          <NavLink to="/checkout">Checkout</NavLink>
         </div>
       </div>
     );
