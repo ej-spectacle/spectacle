@@ -10,9 +10,7 @@ class Cart extends Component {
     this.handleDelete = this.handleDelete.bind(this);
     //this.handlePurchase = this.handlePurchase.bind(this);
   }
-  componentDidMount() {
-    if (this.props.user.id) this.props.fetchCart(this.props.user.id);
-  }
+
   handleDelete(id) {
     this.props.removeOrder(id);
   }
