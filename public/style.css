@@ -112,3 +112,14 @@ img {
 .single-card-link-wrapper:hover {
   color: #007ba7;
 }
+
+.orderHistory {
+  display: flex;
+  flex-direction: column;
+}
+
+.orderHistory table {
+  width: 50%;
+  justify-content: center;
+  text-align: center;
+}

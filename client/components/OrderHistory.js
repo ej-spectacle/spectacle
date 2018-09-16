@@ -22,14 +22,13 @@ class OrderHistory extends React.Component {
       return <h2>Please sign in to view your orders</h2>;
     } else {
       return (
-        <div className="OrderHistory">
+        <div className="orderHistory">
           <h2>Your Orders:</h2>
           {this.props.completedOrders.length > 0 ? (
             <table>
               <tbody>
                 <tr>
-                  <th />
-                  <th>Item Name</th>
+                  <th>Name</th>
                   <th>Price</th>
                   <th>Date Purchased</th>
                   <th>Reference #</th>
@@ -37,12 +36,9 @@ class OrderHistory extends React.Component {
                 {this.props.completedOrders.map(order => {
                   return (
                     <tr key={order.id}>
-                      <td>
-                        <img src={order.glass.imageUrl} height="50" />
-                      </td>
                       <td>{order.glass.name}</td>
                       <td>$3500</td>
-                      <td>{order.purchaseDate}</td>
+                      <td>{order.purchaseDate.slice(0, 10)}</td>
                       <td>{order.refNumber}</td>
                     </tr>
                   );
