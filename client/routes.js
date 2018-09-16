@@ -7,8 +7,10 @@ import { me } from './store';
 import Glasses from './components/Glasses';
 import SingleGlasses from './components/SingleGlasses';
 import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 import User from './components/User';
 import ConfirmationPage from './components/CofirmationPage';
+
 
 /**
  * COMPONENT
@@ -29,6 +31,7 @@ class Routes extends Component {
         <Route exact path="/glasses" component={Glasses} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/glasses/:id" component={SingleGlasses} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route path="/confirmation-page" component={ConfirmationPage} />
 
         {isLoggedIn && (
