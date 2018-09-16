@@ -52,7 +52,7 @@ class SingleGlasses extends Component {
 const mapStateToProps = state => ({
   singleGlasses: state.glasses,
   user: state.user,
-  orders: state.order,
+  orders: state.orders,
 });
 
 const mapDispatchToProps = dispatch => ({

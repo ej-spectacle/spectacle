@@ -1,10 +1,12 @@
 const router = require('express').Router();
-const { Order } = require('../db/models');
+const { Order, Glasses, User } = require('../db/models');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
   try {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({
+      include: [{ model: Glasses }, { model: User }],
+    });
     res.json(orders);
   } catch (err) {
     next(err);
@@ -13,20 +15,35 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('req body', req.body);
     const newOrder = await Order.create(req.body);
-    res.status(201).json(newOrder);
+    const newOrderWithInfo = await Order.findById(newOrder.id, {
+      include: [{ model: Glasses }, { model: User }],
+    });
+    res.status(201).json(newOrderWithInfo);
   } catch (err) {
     next(err);
   }
 });
 
-router.put('/:id', async (req, res, next) => {
+// router.put('/:id', async (req, res, next) => {
+//   try {
+//     const updatedOrder = await Order.findById(req.params.id);
+//     updatedOrder.update(req.body);
+//     const updatedOrderWithInfo = await Order.findById(req.params.id, {
+//       include: [{ model: Glasses }, { model: User }],
+//     });
+//     res.json(updatedOrderWithInfo);
+//   } catch (err) {
+//     next(err);
+//   }
+// });
+
+router.delete('/:id', async (req, res, next) => {
   try {
-    const updatedOrder = await Order.findById(req.params.id);
-    updatedOrder.update(req.body);
-    res.json(updatedOrder);
-  } catch (error) {
-    next(error);
+    const deletedOrder = await Order.findById(req.params.id);
+    deletedOrder.destroy();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
   }
 });
