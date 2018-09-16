@@ -25,13 +25,13 @@ router.get('/:id', async (req, res, next) => {
 
 router.get('/:id/orders', async (req, res, next) => {
   try {
-    const user = await Order.findAll({
+    const orders = await Order.findAll({
       where: {
-        id: req.params.id,
+        userId: req.params.id,
       },
-      include: [{ model: Glasses }],
+      include: [{ model: Glasses }, { model: User }],
     });
-    res.json(user.orders);
+    res.json(orders);
   } catch (err) {
     next(err);
   }

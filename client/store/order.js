@@ -27,10 +27,11 @@ const removeOrder = orderId => {
   };
 };
 
-const purchaseOrder = () => ({
-  type: PURCHASE_ORDER,
-});
+// const purchaseOrder = () => ({
+//   type: PURCHASE_ORDER,
+// });
 
+//admin purposes
 export const fetchAllOrders = () => async dispatch => {
   try {
     const res = await axios.get('/api/orders');
@@ -43,7 +44,8 @@ export const fetchAllOrders = () => async dispatch => {
 export const fetchCart = id => async dispatch => {
   try {
     const res = await axios.get(`/api/users/${id}/orders`);
-    dispatch(getOrders(res.data));
+    const cart = res.data.filter(order => !order.refNumber);
+    dispatch(getOrders(cart));
   } catch (error) {
     console.log(error);
   }
@@ -58,14 +60,14 @@ export const postOrder = order => async dispatch => {
   }
 };
 
-export const purchaseAllOrders = order => async dispatch => {
-  try {
-    await axios.put(`/api/orders/${order.id}`, order);
-    dispatch(purchaseOrder());
-  } catch (error) {
-    console.log(error);
-  }
-};
+// export const purchaseAllOrders = order => async dispatch => {
+//   try {
+//     await axios.put(`/api/orders/${order.id}`, order);
+//     dispatch(purchaseOrder());
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
 
 export const deleteOrder = id => async dispatch => {
   try {

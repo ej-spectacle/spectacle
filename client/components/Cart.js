@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteOrder, purchaseAllOrders } from '../store/order';
+import { deleteOrder, purchaseAllOrders, fetchCart } from '../store/order';
 import { sha256 } from 'js-sha256';
+import { Link } from 'react-router-dom';
 
 class Cart extends Component {
   constructor(props) {
     super(props);
     this.handleDelete = this.handleDelete.bind(this);
-    this.handlePurchase = this.handlePurchase.bind(this);
+    //this.handlePurchase = this.handlePurchase.bind(this);
+  }
+  componentDidMount() {
+    if (this.props.user.id) this.props.fetchCart(this.props.user.id);
   }
   handleDelete(id) {
     this.props.removeOrder(id);
   }
-  handlePurchase() {
-    const purchaseDate = new Date();
-    const refNumber = sha256(`${purchaseDate} ${this.props.user.email}`);
-    const orders = this.props.orders || [];
-    orders.map(order => {
-      this.props.purchaseOrder({
-        ...order,
-        price: order.glass.price,
-        purchaseDate,
-        refNumber,
-      });
-    });
-  }
+  // handlePurchase() {
+  //   const purchaseDate = new Date();
+  //   const refNumber = sha256(`${purchaseDate} ${this.props.user.email}`);
+  //   const orders = this.props.orders || [];
+  //   orders.map(order => {
+  //     this.props.purchaseOrder({
+  //       ...order,
+  //       price: order.glass.price,
+  //       purchaseDate,
+  //       refNumber,
+  //     });
+  //   });
+  // }
   render() {
     const orders = this.props.orders || [];
 
@@ -45,9 +49,7 @@ class Cart extends Component {
           })}
         </div>
         <div className="cart-purchase">
-          <button type="submit" onClick={this.handlePurchase}>
-            Purchase
-          </button>
+          <Link to="/checkout">Checkout</Link>
         </div>
       </div>
     );
@@ -63,8 +65,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    fetchCart: id => dispatch(fetchCart(id)),
     removeOrder: id => dispatch(deleteOrder(id)),
-    purchaseOrder: order => dispatch(purchaseAllOrders(order)),
+    // purchaseOrder: order => dispatch(purchaseAllOrders(order)),
   };
 };
 
