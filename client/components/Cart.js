@@ -28,12 +28,12 @@ class Cart extends Component {
   //   });
   // }
   render() {
-    const orders = this.props.orders || [];
+    const cart = this.props.cart || [];
 
     return (
       <div className="cart-container">
         <div className="cart-items">
-          {orders.map(order => {
+          {cart.map(order => {
             return (
               <div className="cart-single" key={order.id}>
                 <img src={order.glass.imageUrl} />
@@ -57,7 +57,7 @@ class Cart extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user,
-    orders: state.orders,
+    cart: state.cart,
   };
 };
 
