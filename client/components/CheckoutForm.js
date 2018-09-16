@@ -39,7 +39,7 @@ const CheckoutForm = props => {
                     <i className="fa fa-envelope" /> Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     value={user.email}
                     placeholder="john@example.com"
