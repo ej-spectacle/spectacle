@@ -36,6 +36,24 @@ const User = db.define('user', {
   address: {
     type: Sequelize.STRING,
   },
+  city: {
+    type: Sequelize.STRING,
+  },
+  state: {
+    type: Sequelize.STRING,
+  },
+  zip: {
+    type: Sequelize.INTEGER,
+    // validate: {
+    //   isNumeric: {
+    //     msg: "Must be a five-digit number"
+    //   },
+    //   len: {
+    //     args: [5, 5],
+    //     msg: "Must be a five-digit number"
+    //   }
+    // }
+  },
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false,

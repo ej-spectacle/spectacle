@@ -5,6 +5,7 @@ const GET_ORDERS = 'GET_ORDERS';
 const ADD_ORDER = 'ADD_ORDER';
 const REMOVE_ORDER = 'REMOVE_ORDER';
 const PURCHASE_ORDER = 'PURCHASE_ORDER';
+const UPDATE_ORDER = 'UPDATE_ORDER';
 
 const getOrders = orders => {
   return {
@@ -31,8 +32,14 @@ const removeOrder = orderId => {
 //   type: PURCHASE_ORDER,
 // });
 
-//admin purposes
-export const fetchAllOrders = () => async dispatch => {
+const updateOrder = order => {
+  return {
+    type: UPDATE_ORDER,
+    order,
+  };
+};
+
+export const fetchOrders = () => async dispatch => {
   try {
     const res = await axios.get('/api/orders');
     dispatch(getOrders(res.data));
@@ -78,6 +85,15 @@ export const deleteOrder = id => async dispatch => {
   }
 };
 
+export const checkout = order => async dispatch => {
+  try {
+    const res = await axios.put(`/api/orders/${order.id}`, order);
+    dispatch(updateOrder(res.data));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export default function(state = [], action) {
   switch (action.type) {
     case GET_ORDERS:
@@ -88,6 +104,8 @@ export default function(state = [], action) {
       return state.filter(order => order.id !== action.orderId);
     case PURCHASE_ORDER:
       return [];
+    case UPDATE_ORDER:
+      return action.order;
     default:
       return state;
   }
