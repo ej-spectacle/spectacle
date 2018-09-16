@@ -24,15 +24,38 @@ class OrderHistory extends React.Component {
       return (
         <div className="orderHistory">
           <h2>Your Orders:</h2>
-          <br/>
           {this.props.completedOrders.length > 0 ? (
-            <div className="order-table-container">
+            <div className="order-group-container">
               {this.props.completedOrders.map(orderGroup => {
-                <h4>Reference #{orderGroup[0].refNumber}</h4>
-
-
-                })
-              }
+                return (
+                  <div className="order-group" key={orderGroup[0].refNumber}>
+                    <h4>Purchased On: {orderGroup[0].purchaseDate.slice(0, 10)}</h4>
+                    <p>Reference Number: {orderGroup[0].refNumber}</p>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <th />
+                          <th>Item Name</th>
+                          <th>Price</th>
+                          <th>Date Purchased</th>
+                        </tr>
+                        {orderGroup.map(order => {
+                          return (
+                            <tr key={`order${order.id}`}>
+                              <td>
+                                <img src={order.glass.imageUrl} />
+                              </td>
+                              <td>{order.glass.name}</td>
+                              <td>${order.price}</td>
+                              <td>{order.purchaseDate.slice(0, 10)}</td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              })}
             </div>
           ) : (
             <h4>No Orders Placed</h4>

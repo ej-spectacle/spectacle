@@ -118,24 +118,23 @@ img {
   flex-direction: column;
 }
 
-.order-table-container {
+.order-group-container {
   display: flex;
-  justify-content: center;
   flex-direction: column;
 }
 
-.order-table-container table {
+.order-group-container table {
   border: 1px solid #565656;
   width: 70%;
   table-layout: fixed;
   text-align: center;
 }
-.order-table-container tr > td:first-child {
+.order-group-container tr > td:first-child {
   width: 100px;
   height: 100px;
 }
 
-.order-table-container img {
+.order-group-container img {
   height: 100%;
   width: 100px;
 }

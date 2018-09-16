@@ -33,9 +33,9 @@ router.get('/:id/completed-orders', async (req, res, next) => {
         include: {
           model: Glasses,
         },
-        where: { refNumber: { [Op.ne]: null } }, 
-      }, 
-      order: [[{model: Order}, 'purchaseDate', 'DESC']],
+        where: { refNumber: { [Op.ne]: null } },
+      },
+      order: [[{ model: Order }, 'purchaseDate', 'DESC']],
     });
     if (!user) {
       //could change to a 404 error
@@ -46,8 +46,8 @@ router.get('/:id/completed-orders', async (req, res, next) => {
       let seen = '';
       let orderHist = [];
       let orderRef = [];
-      for(let i = 0; i < user.orders.length; i++){
-        if (user.orders[i].refNumber !== seen){
+      for (let i = 0; i < user.orders.length; i++) {
+        if (user.orders[i].refNumber !== seen) {
           //new ref number found
           orderRef = [];
           orderHist.push(orderRef);
@@ -57,9 +57,8 @@ router.get('/:id/completed-orders', async (req, res, next) => {
           orderRef.push(user.orders[i]);
         }
       }
-      res.json(orderHist)
+      res.json(orderHist);
     }
-
   } catch (err) {
     next(err);
   }
