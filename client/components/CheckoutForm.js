@@ -2,7 +2,7 @@ import React from 'react';
 
 const CheckoutForm = props => {
   const { handleChange, handleSubmit, cartCount, user } = props;
-  console.log('USER', user);
+
   return (
     <div className="checkout-container">
       <div className="checkout-header">
@@ -24,6 +24,7 @@ const CheckoutForm = props => {
                     value={user.firstName}
                     placeholder="John"
                     onChange={handleChange}
+                    required
                   />
                   <label htmlFor="lastName">
                     <i className="fa fa-user" /> Last Name
@@ -34,18 +35,20 @@ const CheckoutForm = props => {
                     value={user.lastName}
                     placeholder="Doe"
                     onChange={handleChange}
+                    required
                   />
                   <label htmlFor="email">
                     <i className="fa fa-envelope" /> Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     name="email"
                     value={user.email}
                     placeholder="john@example.com"
                     onChange={handleChange}
+                    required
                   />
-                  <label htmlFor="adress">
+                  <label htmlFor="address">
                     <i className="fa fa-address-card-o" /> Address
                   </label>
                   <input
@@ -54,6 +57,7 @@ const CheckoutForm = props => {
                     value={user.address}
                     placeholder="542 W. 15th Street"
                     onChange={handleChange}
+                    required
                   />
                   <label htmlFor="city">
                     <i className="fa fa-institution" /> City
@@ -64,6 +68,7 @@ const CheckoutForm = props => {
                     value={user.city}
                     placeholder="New York"
                     onChange={handleChange}
+                    required
                   />
 
                   <div className="row">
@@ -75,6 +80,7 @@ const CheckoutForm = props => {
                         value={user.state}
                         placeholder="NY"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="col-50">
@@ -85,6 +91,7 @@ const CheckoutForm = props => {
                         value={user.zip}
                         placeholder="10001"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>

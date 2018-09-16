@@ -53,16 +53,18 @@ export const fetchCart = id => async dispatch => {
   }
 };
 
-export const checkout = order => async dispatch => {
+export const checkout = orders => async dispatch => {
   try {
-    const res = await axios.put(`/api/orders/${order.id}`, order);
-    dispatch(updateOrder(res.data));
+    await orders.forEach(async order => {
+      let res = await axios.put(`/api/orders/${order.id}`, order);
+      dispatch(updateOrder(res.data));
+    })
   } catch (error) {
     console.log(error);
   }
 };
 
-export default function(state = [], action) {
+export default function (state = [], action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.orders;
