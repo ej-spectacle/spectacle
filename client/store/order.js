@@ -43,7 +43,7 @@ export const fetchAllOrders = () => async dispatch => {
 
 export const fetchCart = id => async dispatch => {
   try {
-    const res = await axios.get(`/api/users/${id}/orders`);
+    const res = await axios.get(`/api/users/${id}/cart`);
     const cart = res.data.filter(order => !order.refNumber);
     dispatch(getOrders(cart));
   } catch (error) {

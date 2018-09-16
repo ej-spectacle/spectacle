@@ -23,7 +23,7 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/:id/orders', async (req, res, next) => {
+router.get('/:id/cart', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
       where: {
