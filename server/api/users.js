@@ -5,8 +5,9 @@ module.exports = router;
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      exclude: password,
+      exclude: 'password',
     });
+    console.log('all users', users);
     res.json(users);
   } catch (err) {
     res.sendStatus(404);
