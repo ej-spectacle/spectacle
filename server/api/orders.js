@@ -15,9 +15,11 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    console.log('req body', req.body);
     const newOrder = await Order.create(req.body);
-    res.status(201).json(newOrder);
+    const newOrderWithGlasses = await Order.findById(newOrder.id, {
+      include: [{ model: Glasses }],
+    });
+    res.status(201).json(newOrderWithGlasses);
   } catch (err) {
     next(err);
   }
