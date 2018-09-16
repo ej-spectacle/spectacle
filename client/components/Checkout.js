@@ -63,7 +63,7 @@ class Checkout extends Component {
 const mapState = state => ({
   isLoggedIn: !!state.user.id,
   user: state.user,
-  cartCount: state.order.length,
+  cartCount: state.cart.length,
 });
 
 const mapDispatch = dispatch => ({

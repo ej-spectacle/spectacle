@@ -37,7 +37,7 @@ class SingleGlasses extends Component {
           type="submit"
           onClick={this.handleSubmit}
           disabled={
-            this.props.orders.filter(order => order.glassId === singleGlasses.id).length === 1
+            this.props.cart.filter(order => order.glassId === singleGlasses.id).length === 1
               ? true
               : null
           }
@@ -52,7 +52,7 @@ class SingleGlasses extends Component {
 const mapStateToProps = state => ({
   singleGlasses: state.glasses,
   user: state.user,
-  orders: state.orders,
+  cart: state.cart,
 });
 
 const mapDispatchToProps = dispatch => ({
