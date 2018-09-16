@@ -8,7 +8,7 @@ class ConfirmationPage extends Component {
     return (
       <div>
         <h1>Thank you for your order!</h1>
-        <h4>Order number is #54733</h4>
+        <h4>Order reference is #{order.refNumber}</h4>
         <div className="confirmation-page-container">
           <div className="confirmation-page-shipping">
             <h1>Shipment Details</h1>
@@ -18,6 +18,7 @@ class ConfirmationPage extends Component {
                   {user.firstName} {user.lastName}
                 </li>
                 <li>{user.address}</li>
+                <li>{user.city}, {user.state} {user.zip}</li>
                 <li>{user.email}</li>
               </ul>
             )}
