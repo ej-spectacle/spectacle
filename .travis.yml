@@ -16,12 +16,12 @@ install:
 before_script:
   - psql -c 'create database "ej-spectacle-test";' -U postgres # remember to change this name if you change it elsewhere (e.g. package.json)
 
-# before_deploy:
-#   - npm run build-client # make the bundle
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: YOUR-HEROKU-APP-NAME-HERE # see README
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy:
+  - npm run build-client # make the bundle
+  - rm -rf node_modules # omit from the tarball, since we skip cleanup
+deploy:
+  skip_cleanup: true # prevents travis from deleting the build
+  provider: heroku
+  app: ej-spectacle # see README
+  api_key:
+    secure: 'Id76vgTClD9fqrlo5iawannH8z2vEbuaophf4h5m9AmBjgmGaS9YCTnb9x6mbHrEg/uGyTevp22WHGWFm0DPVZ0P7I/5UDQjBOq6IyTqDAAvim3TLr1nlYzRPdCl0c/u+wuccGerd80Tz9yriJU036cubloX5/5UyDELEkyU7nx/dI8mx2y2PibfNlXLFPqrSD6P8HdqpeKEbBuX0ofU59MEkJIQ49I6j0aOtE3Wkm0m1zcpI1VCfyEldRkCUv+uKf9PHmiX31FLtwOx70xl7fxKf6E7b/h4vG1JYTdIWZ+fgg5le6h23vuP+PgiEtzpFxySvCM8HcacEOmh2b2Q0Gb5e4HXwr2h60nPEkQwPUChNLKrjjBuiVPKhTVqf8NkgKEpvi0PUsBgJet/sde+ciSKCpnTsZJyoTheWBCBf5RgVpwYZo5eZsChyF56/VtRVO+CqwgFx2Gz7dHqBGpJbcCXH14MjC/L+X6UWrLWkQS+qnsAXYjJVteMRbzAUMUmEhk6YMj7/lHcxcMJ6qJhoW4oaKX6CxfFN5w0zbTTtVeUtu4sYUmSUY5gQ1R7YlH9FbiUmjnoqtdwsZNBZ2b7SBukKE9kaFmfoiILXzlX72Fhs+d2y7SSPu3Fu4INC8qKUHP6e57yUZWR0zpcGE2u8SvK0gy1G7gGP8N7qC+msjE='
