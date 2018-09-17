@@ -33,8 +33,23 @@ async function seed() {
     Order.create({
       userId: 1,
       glassId: 5,
+      price: 6000,
       purchaseDate: '2018-08-09',
       refNumber: 'asfiuhr98ehgri8adg',
+    }),
+    Order.create({
+      userId: 1,
+      glassId: 2,
+      price: 4000,
+      purchaseDate: '2018-08-09',
+      refNumber: 'asfiuhr98ehgri8adg',
+    }),
+    Order.create({
+      userId: 1,
+      glassId: 3,
+      price: 8000,
+      purchaseDate: '2018-08-30',
+      refNumber: 'sadlfhasdkjfhgri8adg',
     }),
   ]);
 
