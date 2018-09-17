@@ -80,16 +80,20 @@ router.get('/:id/completed-orders', async (req, res, next) => {
 });
 
 router.get('/:id/cart', async (req, res, next) => {
-  try {
-    const orders = await Order.findAll({
-      where: {
-        userId: req.params.id,
-      },
-      include: [{ model: Glasses }, { model: User }],
-    });
-    res.json(orders);
-  } catch (err) {
-    next(err);
+  if (req.user && req.user.id === Number(req.params.id)) {
+    try {
+      const orders = await Order.findAll({
+        where: {
+          userId: req.params.id,
+        },
+        include: [{ model: Glasses }, { model: User }],
+      });
+      res.json(orders);
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    res.status(403).send('Forbidden');
   }
 });
 
