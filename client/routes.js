@@ -11,6 +11,7 @@ import OrderHistory from './components/OrderHistory';
 import Checkout from './components/Checkout';
 import User from './components/User';
 import ConfirmationPage from './components/CofirmationPage';
+import Homepage from './components/Homepage';
 
 /**
  * COMPONENT
@@ -43,7 +44,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Homepage} />
       </Switch>
     );
   }
