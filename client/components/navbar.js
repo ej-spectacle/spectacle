@@ -14,7 +14,7 @@ class Navbar extends Component {
         <h1>Elton John Sunglasses</h1>
         <nav>
           <div className="nav-left">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/glasses">Glasses</Link>
           </div>
           <div className="nav-right">
