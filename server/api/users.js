@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User, Order, Glasses } = require('../db/models');
+const Sequelize = require('sequelize');
 module.exports = router;
+const Op = Sequelize.Op;
 
 router.get('/', async (req, res, next) => {
   try {
@@ -24,6 +26,41 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.get('/:id/completed-orders', async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id, {
+      include: {
+        model: Order,
+        include: {
+          model: Glasses,
+        },
+        where: { refNumber: { [Op.ne]: null } },
+      },
+      order: [[{ model: Order }, 'purchaseDate', 'DESC']],
+    });
+    if (!user) {
+      //could change to a 404 error
+      res.json([]);
+    } else {
+      //res.json(user.orders);
+      //return;
+      let seen = '';
+      let orderHist = [];
+      let orderRef = [];
+      for (let i = 0; i < user.orders.length; i++) {
+        if (user.orders[i].refNumber !== seen) {
+          //new ref number found
+          orderRef = [];
+          orderHist.push(orderRef);
+          seen = user.orders[i].refNumber;
+          orderRef.push(user.orders[i]);
+        } else {
+          orderRef.push(user.orders[i]);
+        }
+      }
+      res.json(orderHist);
+    }
+
 router.get('/:id/cart', async (req, res, next) => {
   try {
     const orders = await Order.findAll({
@@ -33,6 +70,7 @@ router.get('/:id/cart', async (req, res, next) => {
       include: [{ model: Glasses }, { model: User }],
     });
     res.json(orders);
+
   } catch (err) {
     next(err);
   }
