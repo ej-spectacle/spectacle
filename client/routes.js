@@ -7,14 +7,11 @@ import { me } from './store';
 import Glasses from './components/Glasses';
 import SingleGlasses from './components/SingleGlasses';
 import Cart from './components/Cart';
-<<<<<<< HEAD
 import OrderHistory from './components/OrderHistory';
-=======
 import Checkout from './components/Checkout';
 import User from './components/User';
-import ConfirmationPage from './components/CofirmationPage';
+import ConfirmationPage from './components/ConfirmationPage';
 
->>>>>>> master
 
 /**
  * COMPONENT

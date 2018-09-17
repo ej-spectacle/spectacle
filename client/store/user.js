@@ -38,8 +38,7 @@ export const me = () => async dispatch => {
 export const guest = (user) => async dispatch => {
   try {
     const res = await axios.post('api/users', user);
-    if (res.data.wasCreated) dispatch(createGuestUser(user))
-    // else
+    dispatch(createGuestUser({ ...res.data.user, wasCreated: res.data.wasCreated }))
   } catch (err) {
     console.error(err);
   }

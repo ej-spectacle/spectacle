@@ -137,6 +137,8 @@ img {
 .order-group-container img {
   height: 100%;
   width: 100px;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
@@ -243,4 +245,8 @@ span.price {
 .confirmation-page-items {
   border: 1px solid black;
   padding: 10px 25px 45px 45px;
+}
+
+.single-glasses-container {
+  width: 350px;
 }

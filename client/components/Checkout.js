@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CheckoutForm from './CheckoutForm';
-import { auth, update, purchase } from '../store';
+import { auth, update, purchase, guest } from '../store';
 import { sha256 } from 'js-sha256';
 
 class Checkout extends Component {
@@ -58,14 +58,15 @@ class Checkout extends Component {
   }
 
   handleSubmit(evt) {
-    const { isLoggedIn, updateUser, checkout, orders } = this.props;
+    const { isLoggedIn, updateUser, createGuest, user } = this.props;
     evt.preventDefault()
 
     if (this.isValid()) {
       if (isLoggedIn) {
         updateUser(this.state.user);
       } else {
-        const guest = this.state.user
+        const guest = createGuest(this.state.user)
+        // guest.wasCreated ? null :
       }
       this.purchase();
     } else return null;
@@ -104,6 +105,9 @@ const mapDispatch = dispatch => ({
   purchaseOrder: (order) => {
     dispatch(purchase(order))
   },
+  createGuest: (user) => {
+    dispatch(guest(user))
+  }
 });
 
 export default connect(mapState, mapDispatch)(Checkout);

@@ -17,7 +17,7 @@ class Cart extends Component {
     const cart = this.props.cart || [];
 
     return (
-      <div className="cart-container">
+      <div className="cart-container products-container">
         <div className="cart-items">
           {cart.map(order => {
             return (

@@ -60,6 +60,10 @@ router.get('/:id/completed-orders', async (req, res, next) => {
       }
       res.json(orderHist);
     }
+  } catch (err) {
+    next(err);
+  }
+})
 
 router.get('/:id/cart', async (req, res, next) => {
   try {
