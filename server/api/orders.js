@@ -18,16 +18,14 @@ router.get('/', async (req, res, next) => {
 });
 
 router.post('/', async (req, res, next) => {
-  if (req.user) {
-    try {
-      const newOrder = await Order.create(req.body);
-      const newOrderWithInfo = await Order.findById(newOrder.id, {
-        include: [{ model: Glasses }, { model: User }],
-      });
-      res.status(201).json(newOrderWithInfo);
-    } catch (err) {
-      next(err);
-    }
+  try {
+    const newOrder = await Order.create(req.body);
+    const newOrderWithInfo = await Order.findById(newOrder.id, {
+      include: [{ model: Glasses }, { model: User }],
+    });
+    res.status(201).json(newOrderWithInfo);
+  } catch (err) {
+    next(err);
   }
 });
 
