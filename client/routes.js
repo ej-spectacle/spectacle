@@ -10,8 +10,13 @@ import Cart from './components/Cart';
 import OrderHistory from './components/OrderHistory';
 import Checkout from './components/Checkout';
 import User from './components/User';
+<<<<<<< HEAD
 import ConfirmationPage from './components/ConfirmationPage';
 
+=======
+import ConfirmationPage from './components/CofirmationPage';
+import Homepage from './components/Homepage';
+>>>>>>> master
 
 /**
  * COMPONENT
@@ -34,7 +39,7 @@ class Routes extends Component {
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/glasses/:id" component={SingleGlasses} />
         <Route exact path="/checkout" component={Checkout} />
-        <Route path="/confirmation-page" component={ConfirmationPage} />
+        <Route exact path="/confirmation-page" component={ConfirmationPage} />
 
         {isLoggedIn && (
           <Switch>
@@ -44,7 +49,7 @@ class Routes extends Component {
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
-        <Route component={Login} />
+        <Route component={Homepage} />
       </Switch>
     );
   }

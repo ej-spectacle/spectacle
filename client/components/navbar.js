@@ -26,8 +26,8 @@ class Navbar extends Component {
                     {user.email}
                   </button>
                   <div className="dropdown-content">
-                    <a href="#">Dashboard</a>
-                    <a href="#">Order History</a>
+                    <a href="/dashboard">Dashboard</a>
+                    <a href="/orders">Order History</a>
                   </div>
                 </div>
                 <a href="#" onClick={handleClick}>

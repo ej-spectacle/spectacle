@@ -217,6 +217,7 @@ span.price {
   float: right;
   color: grey;
 }
+
 .admin-dashboard {
   text-align: center;
 }
@@ -258,4 +259,8 @@ span.price {
 .error {
   color: red;
   size: 12px;
+}
+
+.homepage-container {
+  text-align: center;
 }

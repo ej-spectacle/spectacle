@@ -3,13 +3,17 @@ const { Order, Glasses, User } = require('../db/models');
 module.exports = router;
 
 router.get('/', async (req, res, next) => {
-  try {
-    const orders = await Order.findAll({
-      include: [{ model: Glasses }, { model: User }],
-    });
-    res.json(orders);
-  } catch (err) {
-    next(err);
+  if (req.user && req.user.dataValues.isAdmin) {
+    try {
+      const orders = await Order.findAll({
+        include: [{ model: Glasses }, { model: User }],
+      });
+      res.json(orders);
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    res.status(403).send('Forbidden');
   }
 });
 
@@ -39,11 +43,19 @@ router.put('/:id', async (req, res, next) => {
 });
 
 router.delete('/:id', async (req, res, next) => {
-  try {
-    const deletedOrder = await Order.findById(req.params.id);
-    deletedOrder.destroy();
-    res.sendStatus(204);
-  } catch (err) {
-    next(err);
+  if (req.user) {
+    try {
+      const deletedOrder = await Order.findById(req.params.id);
+      if (req.user.dataValues.id === deletedOrder.userId || req.user.dataValues.isAdmin) {
+        deletedOrder.destroy();
+        res.sendStatus(204);
+      } else {
+        res.status(403).send('Forbidden');
+      }
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    res.status(403).send('Forbidden');
   }
 });

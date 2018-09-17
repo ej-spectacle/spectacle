@@ -12,6 +12,10 @@ router.get('/', async (req, res, next) => {
   }
 });
 
+router.get('/teapot', (req, res, next) => {
+  res.status(418).send("I'm a teapot");
+});
+
 //GET api/glasses/:id
 router.get('/:id', async (req, res, next) => {
   const glassesId = req.params.id;
@@ -37,24 +41,32 @@ router.post('/', async (req, res, next) => {
 
 //PUT api/glasses/:id ---> ADMIN only
 router.put('/:id', async (req, res, next) => {
-  const glassesId = req.params.id;
-  try {
-    const glasses = await Glasses.findById(glassesId);
-    const updatedGlasses = await glasses.update(req.body);
-    res.send(updatedGlasses);
-  } catch (err) {
-    next(err);
+  if (req.user && req.user.dataValues.isAdmin) {
+    const glassesId = req.params.id;
+    try {
+      const glasses = await Glasses.findById(glassesId);
+      const updatedGlasses = await glasses.update(req.body);
+      res.send(updatedGlasses);
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    res.status(403).send('Forbidden');
   }
 });
 
 //DELETE api/glasses/:id ---> ADMIN only
 router.delete('/:id', async (req, res, next) => {
-  const glassesId = req.params.id;
-  try {
-    const glasses = await Glasses.findById(glassesId);
-    await glasses.destroy();
-    res.sendStatus(204).end();
-  } catch (err) {
-    next(err);
+  if (req.user && req.user.dataValues.isAdmin) {
+    const glassesId = req.params.id;
+    try {
+      const glasses = await Glasses.findById(glassesId);
+      await glasses.destroy();
+      res.sendStatus(204).end();
+    } catch (err) {
+      next(err);
+    }
+  } else {
+    res.status(403).send('Forbidden');
   }
 });

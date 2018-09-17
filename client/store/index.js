@@ -12,7 +12,6 @@ import users from './users';
 
 const reducer = combineReducers({ user, glasses, cart, users, completedOrders });
 
-
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
@@ -23,4 +22,3 @@ export * from './user';
 export * from './glasses';
 export * from './order';
 export * from './users';
-
