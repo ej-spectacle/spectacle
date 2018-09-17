@@ -215,6 +215,7 @@ span.price {
   float: right;
   color: grey;
 }
+
 .admin-dashboard {
   text-align: center;
 }
@@ -243,4 +244,8 @@ span.price {
 .confirmation-page-items {
   border: 1px solid black;
   padding: 10px 25px 45px 45px;
+}
+
+.homepage-container {
+  text-align: center;
 }
