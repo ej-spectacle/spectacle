@@ -137,6 +137,8 @@ img {
 .order-group-container img {
   height: 100%;
   width: 100px;
+}
+
 .row {
   display: flex;
   flex-wrap: wrap;
