@@ -70,25 +70,22 @@ router.get('/:id/completed-orders', async (req, res, next) => {
       }
       res.json(orderHist);
     }
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.get('/:id/cart', async (req, res, next) => {
-  if (
-    req.user &&
-    (req.user.dataValues.id === Number(req.params.id) || req.user.dataValues.isAdmin)
-  ) {
-    try {
-      const orders = await Order.findAll({
-        where: {
-          userId: req.params.id,
-        },
-        include: [{ model: Glasses }, { model: User }],
-      });
-      res.json(orders);
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    res.status(403).send('Forbidden');
+  try {
+    const orders = await Order.findAll({
+      where: {
+        userId: req.params.id,
+      },
+      include: [{ model: Glasses }, { model: User }],
+    });
+    res.json(orders);
+  } catch (err) {
+    next(err);
   }
 });
 
