@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
-import { auth, update, checkout } from '../store';
+import { auth, update, purchase } from '../store';
+import { sha256 } from 'js-sha256';
 
 class Checkout extends Component {
   constructor(props) {
@@ -15,35 +15,60 @@ class Checkout extends Component {
         address: '',
         city: '',
         state: '',
-        zip: null,
+        zip: '',
       },
       isLoading: true,
     };
-    // this.isValid = this.isValid.bind(this);
+    this.isValid = this.isValid.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.purchase = this.purchase.bind(this)
   }
 
   componentDidMount() {
-    console.log('user:', this.state.user);
     this.setState({ user: { ...this.props.user }, isLoading: false });
   }
 
+  purchase() {
+    const purchaseDate = new Date();
+    const refNumber = sha256(`${purchaseDate} ${this.props.user.email}`);
+    const orders = this.props.cart || [];
+    orders.map(order => {
+      this.props.purchaseOrder({
+        ...order,
+        price: order.glass.price,
+        purchaseDate,
+        refNumber,
+      });
+    });
+  }
+
+  isValid() {
+    const { firstName, lastName, email, address, city, state, zip } = this.state.user
+    if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && address.length > 0 && city.length > 0 && state.length > 0 && zip > 0) {
+      return true
+    }
+    return false
+  }
+
   handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+    const user = this.state.user
+    user[evt.target.name] = evt.target.value
+    this.setState({ user });
   }
 
   handleSubmit(evt) {
-    // const { isLoggedIn, updateUser, checkout, orders } = this.props;
+    const { isLoggedIn, updateUser, checkout, orders } = this.props;
+    evt.preventDefault()
 
-    // if (this.isValid()) {
-    //   evt.preventDefault()
-    //   if (isLoggedIn) {
-    //     updateUser(this.state);
-    //     checkout(orders);
-    //   }
-    //   this.props
-    // }
+    if (this.isValid()) {
+      if (isLoggedIn) {
+        updateUser(this.state.user);
+      } else {
+        const guest = this.state.user
+      }
+      this.purchase();
+    } else return null;
   }
 
   render() {
@@ -66,6 +91,7 @@ const mapState = state => ({
   isLoggedIn: !!state.user.id,
   user: state.user,
   cartCount: state.cart.length,
+  cart: state.cart
 });
 
 const mapDispatch = dispatch => ({
@@ -75,9 +101,9 @@ const mapDispatch = dispatch => ({
   createUser: (email, password, method) => {
     dispatch(auth(email, password, method));
   },
-  checkout: (orders) => {
-    dispatch(checkout(orders))
-  }
+  purchaseOrder: (order) => {
+    dispatch(purchase(order))
+  },
 });
 
 export default connect(mapState, mapDispatch)(Checkout);

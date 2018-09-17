@@ -2,7 +2,7 @@ import React from 'react';
 
 const CheckoutForm = props => {
   const { handleChange, handleSubmit, cartCount, user } = props;
-  console.log('USER', user);
+
   return (
     <div className="checkout-container">
       <div className="checkout-header">

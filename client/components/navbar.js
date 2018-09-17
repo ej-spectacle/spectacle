@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { logout } from '../store';
-import { fetchCart } from '../store/order';
+import { logout, me, fetchCart } from '../store';
 
 class Navbar extends Component {
-  componentDidMount() {
-    if (this.props.user.id) this.props.fetchCart(this.props.user.id);
-  }
 
   render() {
     const { handleClick, isLoggedIn, user, cartCount } = this.props;
+    if (this.props.user.id) this.props.fetchCart(this.props.user.id);
+
 
     return (
       <div>
@@ -39,12 +37,12 @@ class Navbar extends Component {
                 </a>
               </div>
             ) : (
-              <div>
-                {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-              </div>
-            )}
+                <div>
+                  {/* The navbar will show these links before you log in */}
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Sign Up</Link>
+                </div>
+              )}
             <Link to="/cart">Cart{`(${cartCount})`}</Link>
           </div>
         </nav>
@@ -70,7 +68,12 @@ const mapDispatch = dispatch => {
     handleClick: () => {
       dispatch(logout());
     },
-    fetchCart: id => dispatch(fetchCart(id)),
+    fetchCart: (id) => {
+      dispatch(fetchCart(id))
+    },
+    getUser: () => {
+      dispatch(me())
+    }
   };
 };
 
