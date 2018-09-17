@@ -10,8 +10,13 @@ import Cart from './components/Cart';
 import OrderHistory from './components/OrderHistory';
 import Checkout from './components/Checkout';
 import User from './components/User';
+<<<<<<< HEAD
+import ConfirmationPage from './components/ConfirmationPage';
+
+=======
 import ConfirmationPage from './components/CofirmationPage';
 import Homepage from './components/Homepage';
+>>>>>>> master
 
 /**
  * COMPONENT

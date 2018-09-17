@@ -80,20 +80,28 @@ router.get('/:id/completed-orders', async (req, res, next) => {
 });
 
 router.get('/:id/cart', async (req, res, next) => {
-  if (req.user && req.user.id === Number(req.params.id)) {
-    try {
-      const orders = await Order.findAll({
-        where: {
-          userId: req.params.id,
-        },
-        include: [{ model: Glasses }, { model: User }],
-      });
-      res.json(orders);
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    res.status(403).send('Forbidden');
+  try {
+    const orders = await Order.findAll({
+      where: {
+        userId: req.params.id,
+      },
+      include: [{ model: Glasses }, { model: User }],
+    });
+    res.json(orders);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post('/', async (req, res, next) => {
+  try {
+    const [user, wasCreated] = await User.findOrCreate({
+      where: { email: req.body.email },
+      defaults: { ...req.body, isAdmin: false },
+    });
+    res.json({ user, wasCreated });
+  } catch (err) {
+    next(err);
   }
 });
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
-import { auth, update, checkout } from '../store';
+import { auth, update, purchase, guest } from '../store';
+import { sha256 } from 'js-sha256';
 
 class Checkout extends Component {
   constructor(props) {
@@ -15,36 +15,75 @@ class Checkout extends Component {
         address: '',
         city: '',
         state: '',
-        zip: null,
+        zip: '',
       },
       isLoading: true,
+      submitted: false,
     };
     // this.isValid = this.isValid.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.purchase = this.purchase.bind(this);
   }
 
   componentDidMount() {
-    console.log('user:', this.state.user);
     this.setState({ user: { ...this.props.user }, isLoading: false });
   }
 
+  purchase() {
+    const purchaseDate = new Date();
+    const refNumber = sha256(`${purchaseDate} ${this.props.user.email}`);
+    const orders = this.props.cart || [];
+    orders.map(order => {
+      this.props.purchaseOrder({
+        ...order,
+        price: order.glass.price,
+        purchaseDate,
+        refNumber,
+      });
+    });
+  }
+
+  // isValid() {
+  //   const { firstName, lastName, email, address, city, state, zip } = this.state.user;
+  //   if (
+  //     firstName.length > 0 &&
+  //     lastName.length > 0 &&
+  //     email.length > 0 &&
+  //     address.length > 0 &&
+  //     city.length > 0 &&
+  //     state.length > 0 &&
+  //     zip > 0
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
+
   handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+    const user = this.state.user;
+    user[evt.target.name] = evt.target.value;
+    this.setState({ user });
   }
 
   handleSubmit(evt) {
+    const { isLoggedIn, updateUser, createGuest, user } = this.props;
+    evt.preventDefault();
+
     // if (this.isValid()) {
-    //   evt.preventDefault()
-    //   if (this.props.isLoggedIn) {
-    //     this.props.updateUser(this.state);
-    //     this.props.checkout()
-    //   }
-    //   this.props
-    // }
+    if (isLoggedIn) {
+      updateUser(this.state.user);
+    } else {
+      createGuest(this.state.user);
+    }
+    this.purchase();
+    this.setState({ submitted: true });
+    // } else return null;
   }
 
   render() {
+    const createdGuest = this.props.user;
+
     return (
       <div>
         {!this.state.isLoading ? (
@@ -53,6 +92,7 @@ class Checkout extends Component {
             handleSubmit={this.handleSubmit}
             user={this.state.user}
             cartCount={this.props.cartCount}
+            wasCreated={this.state.submitted ? createdGuest.wasCreated : true}
           />
         ) : null}
       </div>
@@ -64,6 +104,7 @@ const mapState = state => ({
   isLoggedIn: !!state.user.id,
   user: state.user,
   cartCount: state.cart.length,
+  cart: state.cart,
 });
 
 const mapDispatch = dispatch => ({
@@ -72,6 +113,12 @@ const mapDispatch = dispatch => ({
   },
   createUser: (email, password, method) => {
     dispatch(auth(email, password, method));
+  },
+  purchaseOrder: order => {
+    dispatch(purchase(order));
+  },
+  createGuest: user => {
+    dispatch(guest(user));
   },
 });
 

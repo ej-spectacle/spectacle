@@ -29,18 +29,18 @@ router.post('/', async (req, res, next) => {
   }
 });
 
-// router.put('/:id', async (req, res, next) => {
-//   try {
-//     const updatedOrder = await Order.findById(req.params.id);
-//     updatedOrder.update(req.body);
-//     const updatedOrderWithInfo = await Order.findById(req.params.id, {
-//       include: [{ model: Glasses }, { model: User }],
-//     });
-//     res.json(updatedOrderWithInfo);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.put('/:id', async (req, res, next) => {
+  try {
+    const updatedOrder = await Order.findById(req.params.id);
+    updatedOrder.update(req.body);
+    const updatedOrderWithInfo = await Order.findById(req.params.id, {
+      include: [{ model: Glasses }, { model: User }],
+    });
+    res.json(updatedOrderWithInfo);
+  } catch (err) {
+    next(err);
+  }
+});
 
 router.delete('/:id', async (req, res, next) => {
   if (req.user) {

@@ -27,7 +27,7 @@ class SingleGlasses extends Component {
     const singleGlasses = this.props.singleGlasses[0];
 
     return !singleGlasses ? null : (
-      <div className="single-glasses-container">
+      <div className="single-glasses-container products-container single-card">
         <img className="single-glasses-image" src={singleGlasses.imageUrl} />
         <div className="single-glasses-info">
           <h3>{singleGlasses.name}</h3>
