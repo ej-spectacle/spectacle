@@ -18,7 +18,9 @@ class ConfirmationPage extends Component {
                   {user.firstName} {user.lastName}
                 </li>
                 <li>{user.address}</li>
-                <li>{user.city}, {user.state} {user.zip}</li>
+                <li>
+                  {user.city}, {user.state} {user.zip}
+                </li>
                 <li>{user.email}</li>
               </ul>
             )}
