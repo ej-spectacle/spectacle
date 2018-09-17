@@ -63,7 +63,7 @@ router.get('/:id/completed-orders', async (req, res, next) => {
   } catch (err) {
     next(err);
   }
-})
+});
 
 router.get('/:id/cart', async (req, res, next) => {
   try {
@@ -74,7 +74,6 @@ router.get('/:id/cart', async (req, res, next) => {
       include: [{ model: Glasses }, { model: User }],
     });
     res.json(orders);
-
   } catch (err) {
     next(err);
   }
@@ -82,12 +81,15 @@ router.get('/:id/cart', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const [user, wasCreated] = await User.findOrCreate({ where: { email: req.body.email } }, { ...req.body, isAdmin: false })
-    res.json({ user, wasCreated })
+    const [user, wasCreated] = await User.findOrCreate({
+      where: { email: req.body.email },
+      defaults: { ...req.body, isAdmin: false },
+    });
+    res.json({ user, wasCreated });
   } catch (err) {
     next(err);
   }
-})
+});
 
 router.put('/:id', async (req, res, next) => {
   try {

@@ -1,7 +1,8 @@
 import React from 'react';
 
 const CheckoutForm = props => {
-  const { handleChange, handleSubmit, cartCount, user } = props;
+  const { handleChange, handleSubmit, cartCount, user, wasCreated } = props;
+  const errMessage = wasCreated ? 'hidden' : 'error';
 
   return (
     <div className="checkout-container">
@@ -45,6 +46,7 @@ const CheckoutForm = props => {
                     placeholder="john@example.com"
                     onChange={handleChange}
                   />
+                  <span className={errMessage}>User with that email already exists.</span>
                   <label htmlFor="adress">
                     <i className="fa fa-address-card-o" /> Address
                   </label>

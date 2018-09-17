@@ -35,14 +35,16 @@ export const me = () => async dispatch => {
   }
 };
 
-export const guest = (user) => async dispatch => {
+export const guest = user => async dispatch => {
   try {
     const res = await axios.post('api/users', user);
-    dispatch(createGuestUser({ ...res.data.user, wasCreated: res.data.wasCreated }))
+    console.log('created guest', res.data);
+    dispatch(createGuestUser({ ...res.data.user, wasCreated: res.data.wasCreated }));
+    //dispatch(createGuestUser({ ...res.data }));
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 export const auth = (email, password, method) => async dispatch => {
   let res;
@@ -83,7 +85,7 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function (state = defaultUser, action) {
+export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;

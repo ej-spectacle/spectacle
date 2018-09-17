@@ -250,3 +250,12 @@ span.price {
 .single-glasses-container {
   width: 350px;
 }
+
+.hidden {
+  display: none;
+}
+
+.error {
+  color: red;
+  size: 12px;
+}

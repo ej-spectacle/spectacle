@@ -18,11 +18,12 @@ class Checkout extends Component {
         zip: '',
       },
       isLoading: true,
+      submitted: false,
     };
-    this.isValid = this.isValid.bind(this);
+    // this.isValid = this.isValid.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.purchase = this.purchase.bind(this)
+    this.purchase = this.purchase.bind(this);
   }
 
   componentDidMount() {
@@ -43,36 +44,46 @@ class Checkout extends Component {
     });
   }
 
-  isValid() {
-    const { firstName, lastName, email, address, city, state, zip } = this.state.user
-    if (firstName.length > 0 && lastName.length > 0 && email.length > 0 && address.length > 0 && city.length > 0 && state.length > 0 && zip > 0) {
-      return true
-    }
-    return false
-  }
+  // isValid() {
+  //   const { firstName, lastName, email, address, city, state, zip } = this.state.user;
+  //   if (
+  //     firstName.length > 0 &&
+  //     lastName.length > 0 &&
+  //     email.length > 0 &&
+  //     address.length > 0 &&
+  //     city.length > 0 &&
+  //     state.length > 0 &&
+  //     zip > 0
+  //   ) {
+  //     return true;
+  //   }
+  //   return false;
+  // }
 
   handleChange(evt) {
-    const user = this.state.user
-    user[evt.target.name] = evt.target.value
+    const user = this.state.user;
+    user[evt.target.name] = evt.target.value;
     this.setState({ user });
   }
 
   handleSubmit(evt) {
     const { isLoggedIn, updateUser, createGuest, user } = this.props;
-    evt.preventDefault()
+    evt.preventDefault();
 
-    if (this.isValid()) {
-      if (isLoggedIn) {
-        updateUser(this.state.user);
-      } else {
-        const guest = createGuest(this.state.user)
-        // guest.wasCreated ? null :
-      }
-      this.purchase();
-    } else return null;
+    // if (this.isValid()) {
+    if (isLoggedIn) {
+      updateUser(this.state.user);
+    } else {
+      createGuest(this.state.user);
+    }
+    this.purchase();
+    this.setState({ submitted: true });
+    // } else return null;
   }
 
   render() {
+    const createdGuest = this.props.user;
+
     return (
       <div>
         {!this.state.isLoading ? (
@@ -81,6 +92,7 @@ class Checkout extends Component {
             handleSubmit={this.handleSubmit}
             user={this.state.user}
             cartCount={this.props.cartCount}
+            wasCreated={this.state.submitted ? createdGuest.wasCreated : true}
           />
         ) : null}
       </div>
@@ -92,22 +104,22 @@ const mapState = state => ({
   isLoggedIn: !!state.user.id,
   user: state.user,
   cartCount: state.cart.length,
-  cart: state.cart
+  cart: state.cart,
 });
 
 const mapDispatch = dispatch => ({
-  updateUser: (user) => {
+  updateUser: user => {
     dispatch(update(user));
   },
   createUser: (email, password, method) => {
     dispatch(auth(email, password, method));
   },
-  purchaseOrder: (order) => {
-    dispatch(purchase(order))
+  purchaseOrder: order => {
+    dispatch(purchase(order));
   },
-  createGuest: (user) => {
-    dispatch(guest(user))
-  }
+  createGuest: user => {
+    dispatch(guest(user));
+  },
 });
 
 export default connect(mapState, mapDispatch)(Checkout);
