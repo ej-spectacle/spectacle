@@ -10,7 +10,7 @@ import Cart from './components/Cart';
 import OrderHistory from './components/OrderHistory';
 import Checkout from './components/Checkout';
 import User from './components/User';
-import ConfirmationPage from './components/CofirmationPage';
+import ConfirmationPage from './components/ConfirmationPage';
 import Homepage from './components/Homepage';
 
 /**
