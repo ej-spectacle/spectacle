@@ -32,7 +32,7 @@ router.post('/', async (req, res, next) => {
 router.put('/:id', async (req, res, next) => {
   try {
     const updatedOrder = await Order.findById(req.params.id);
-    updatedOrder.update(req.body);
+    await updatedOrder.update(req.body);
     const updatedOrderWithInfo = await Order.findById(req.params.id, {
       include: [{ model: Glasses }, { model: User }],
     });
