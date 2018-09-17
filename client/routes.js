@@ -11,7 +11,6 @@ import Checkout from './components/Checkout';
 import User from './components/User';
 import ConfirmationPage from './components/CofirmationPage';
 
-
 /**
  * COMPONENT
  */

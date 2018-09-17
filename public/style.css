@@ -190,7 +190,7 @@ hr {
 span.price {
   float: right;
   color: grey;
-=======
+}
 .admin-dashboard {
   text-align: center;
 }
@@ -203,6 +203,7 @@ span.price {
   text-align: center;
   list-style-type: none;
   font-size: 25px;
+}
 
 .confirmation-page-container {
   display: flex;
