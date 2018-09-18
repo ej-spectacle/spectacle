@@ -29,7 +29,8 @@ const removeUser = () => ({ type: REMOVE_USER });
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me');
-    dispatch(getUser({ ...res.data, isLoggedIn: true } || defaultUser));
+    const user = res.data ? { ...res.data, isLoggedIn: true } : defaultUser;
+    dispatch(getUser(user));
   } catch (err) {
     console.error(err);
   }
