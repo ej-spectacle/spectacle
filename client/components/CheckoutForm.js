@@ -14,7 +14,7 @@ const CheckoutForm = props => {
       <div className="row">
         <div className="col-75">
           <div className="container">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-50">
                   <h3>Shipping Address</h3>
@@ -101,7 +101,7 @@ const CheckoutForm = props => {
                   </div>
                 </div>
               </div>
-              <input type="submit" value="Purchase" className="btn" onClick={handleSubmit} />
+              <input type="submit" value="Purchase" className="btn" />
             </form>
           </div>
         </div>

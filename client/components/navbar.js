@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { logout, me, fetchCart } from '../store';
@@ -55,7 +54,7 @@ class Navbar extends Component {
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user,
+    isLoggedIn: state.user.isLoggedIn,
     user: state.user,
     cartCount: state.cart.length,
   };
@@ -77,10 +76,3 @@ const mapDispatch = dispatch => {
 
 export default connect(mapState, mapDispatch)(Navbar);
 
-/**
- * PROP TYPES
- */
-Navbar.propTypes = {
-  handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired,
-};
