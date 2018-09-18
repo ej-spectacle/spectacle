@@ -78,6 +78,8 @@ class Checkout extends Component {
     }
     this.purchase();
     this.setState({ submitted: true });
+    this.props.history.push('/confirmation-page');
+
     // } else return null;
   }
 

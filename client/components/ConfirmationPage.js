@@ -2,25 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class ConfirmationPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
-  componentDidMount() {}
-
   render() {
+    console.log(this.props);
     const confirmedOrder = this.props.confirmedOrder;
-    const user = this.props.confirmedOrder[0].user;
+    const user = this.props.user;
 
     return (
       <div>
         <h1>Thank you for your order!</h1>
-        <h4>Order reference is #{confirmedOrder[0].refNumber}</h4>
+        <h4>Order reference is #{!confirmedOrder.length ? null : confirmedOrder[0].refNumber}</h4>
         <div className="confirmation-page-container">
           <div className="confirmation-page-shipping">
             <h1>Shipment Details</h1>
-            {!confirmedOrder ? null : (
+            {!confirmedOrder.length ? null : (
               <ul>
                 <li>
                   {user.firstName} {user.lastName}
@@ -40,7 +34,11 @@ class ConfirmationPage extends Component {
               {!confirmedOrder.length
                 ? null
                 : confirmedOrder.map(item => {
-                    return <li>{item.name}</li>;
+                    return (
+                      <ul key={`completed ${item.glass.id}`}>
+                        <li>{item.glass.name}</li>
+                      </ul>
+                    );
                   })}
             </ul>
           </div>
@@ -52,6 +50,7 @@ class ConfirmationPage extends Component {
 
 const mapStateToProps = state => {
   return {
+    user: state.user,
     confirmedOrder: state.completedOrders,
   };
 };
