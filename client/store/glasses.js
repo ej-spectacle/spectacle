@@ -36,27 +36,27 @@ export const fetchSingleGlasses = id => async dispatch => {
   }
 };
 
-export const purchaseGlasses = (glasses) => async dispatch => {
+export const purchaseGlasses = glasses => async dispatch => {
   try {
     const res = await axios.put(`/api/glasses/${glasses.id}`, glasses);
-    dispatch(updateGlasses(res.data))
+    dispatch(updateGlasses(res.data));
   } catch (err) {
-    console.log('Error updating glasses', err)
+    console.log('Error updating glasses', err);
   }
-}
+};
 
 /**
  * REDUCER
  */
-export default function (state = [], action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_GLASSES:
       return action.glasses;
     case GET_SINGLE_GLASSES:
       return [action.singleGlasses];
     case UPDATE_GLASSES:
-      const updatedGlasses = state.filter(glasses => glasses.id !== action.glasses.id)
-      return [...updatedGlasses, action.glasses]
+      const updatedGlasses = state.filter(glasses => glasses.id !== action.glasses.id);
+      return [...updatedGlasses, action.glasses];
     default:
       return state;
   }
