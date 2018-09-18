@@ -79,9 +79,12 @@ export const purchase = order => async dispatch => {
   }
 };
 
-export const deleteOrder = id => async dispatch => {
+export const deleteOrder = (id, userId = 0) => async dispatch => {
   try {
-    await axios.delete(`/api/orders/${id}`);
+    if (userId) {
+      console.log('in delete order reducer');
+      await axios.delete(`/api/orders/${id}`);
+    }
     dispatch(removeOrder(id));
   } catch (error) {
     console.log(error);

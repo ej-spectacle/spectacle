@@ -10,16 +10,25 @@ class Cart extends Component {
   }
 
   handleDelete(id) {
-    this.props.removeOrder(id);
+    if (this.props.user.id) {
+      console.log('in handle user delete');
+      console.log(this.props.user.id);
+      this.props.removeOrder(id, this.props.user.id);
+    } else {
+      this.props.removeOrder(id);
+    }
   }
 
   render() {
     const cart = this.props.cart || [];
+    let total = 0;
 
-    return (
+    return cart.length ? (
       <div className="cart-container products-container">
         <div className="cart-items">
           {cart.map(order => {
+            total += order.glass.price;
+
             return (
               <div className="cart-single" key={order.id}>
                 <img src={order.glass.imageUrl} />
@@ -32,11 +41,16 @@ class Cart extends Component {
             );
           })}
         </div>
+        <div className="cart-total">Total: ${total}</div>
         <div className="cart-purchase">
-          <button>
+          <button type="submit">
             <NavLink to="/checkout">Checkout</NavLink>
           </button>
         </div>
+      </div>
+    ) : (
+      <div>
+        <h3>Your cart is empty.</h3>
       </div>
     );
   }
@@ -52,7 +66,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchCart: id => dispatch(fetchCart(id)),
-    removeOrder: id => dispatch(deleteOrder(id)),
+    removeOrder: (id, userId = 0) => dispatch(deleteOrder(id, userId)),
   };
 };
 
