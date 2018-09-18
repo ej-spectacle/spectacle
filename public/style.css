@@ -283,3 +283,19 @@ span.price {
 .confirmation-page-shipment-details {
   list-style-type: none;
 }
+
+.cart-single {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+}
+
+.cart-single-info {
+  margin-left: 50px;
+}
+
+.cart-items, .cart-total  {
+  border: 1px solid black;
+  padding: 10px 25px 45px 45px;
+  margin-bottom: 40px;
+}
