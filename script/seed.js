@@ -14,16 +14,18 @@ async function seed() {
   ]);
 
   const glasses = await Promise.all([
-    Glasses.create({ name: 'Black n White', price: 3500, imageUrl: '/glasses/blacknwhite.png' }),
-    Glasses.create({ name: 'Chic', price: 2500, imageUrl: '/glasses/chic.png' }),
-    Glasses.create({ name: 'Feathers', price: 3000, imageUrl: '/glasses/feathers.png' }),
-    Glasses.create({ name: 'Gnome', price: 5500, imageUrl: '/glasses/gnome.png' }),
-    Glasses.create({ name: 'Hero', price: 3000, imageUrl: '/glasses/hero.png' }),
-    Glasses.create({ name: 'May', price: 3500, imageUrl: '/glasses/may.png' }),
-    Glasses.create({ name: 'Mirror Mirror', price: 3800, imageUrl: '/glasses/mirrorframe.png' }),
-    Glasses.create({ name: 'Sparkles', price: 2800, imageUrl: '/glasses/sparkles.png' }),
-    Glasses.create({ name: 'Windshield', price: 8500, imageUrl: '/glasses/windshield.png' }),
-    Glasses.create({ name: 'Zoom', price: 6000, imageUrl: '/glasses/zoom.png' }),
+    Glasses.create({ name: 'Black n White Cookies', price: 35000, imageUrl: '/glasses/blacknwhite.png' }),
+    Glasses.create({ name: 'Sunshines in Blue', price: 95000, imageUrl: '/glasses/sunshine.png' }),
+    Glasses.create({ name: 'Par Amour by L\'Aveugie', price: 25000, imageUrl: '/glasses/chic.png' }),
+    Glasses.create({ name: 'Feathers All Around', price: 30000, imageUrl: '/glasses/feathers.png' }),
+    Glasses.create({ name: 'I\'m Not Alone', price: 55000, imageUrl: '/glasses/gnome.png' }),
+    Glasses.create({ name: 'Heroes Among Us', price: 30000, imageUrl: '/glasses/hero.png' }),
+    Glasses.create({ name: 'You\'re Never Extra', price: 35000, imageUrl: '/glasses/may.png' }),
+    Glasses.create({ name: 'Mirror for the King', price: 38000, imageUrl: '/glasses/mirrorframe.png' }),
+    Glasses.create({ name: 'Sparkles at Night', price: 28000, imageUrl: '/glasses/sparkles.png' }),
+    Glasses.create({ name: 'Helicopter Windshield', price: 85000, imageUrl: '/glasses/windshield.png' }),
+    Glasses.create({ name: 'Zoom All The Way', price: 60000, imageUrl: '/glasses/zoom.png' }),
+    Glasses.create({ name: 'Slice and Dice', price: 120000, imageUrl: '/glasses/scissors.png' }),
   ]);
 
   const orders = await Promise.all([
