@@ -230,7 +230,8 @@ img {
   margin-bottom: 20px;
 }
 
-.col-50 > input[type='text'], input[type='email'] {
+.col-50 > input[type='text'],
+input[type='email'] {
   width: 95%;
   margin-bottom: 20px;
   padding: 12px;
@@ -329,6 +330,31 @@ span.price {
   list-style-type: none;
 }
 
+.dashboard-container-item {
+  border: 2px black solid;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding: 45px;
+  width: 100px;
+  display: flex;
+  align-items: baseline;
+  font-size: 25px;
+}
+
+.dashboard-container-item:hover {
+  border: 2px black solid;
+  background: lightgray;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding: 45px;
+  width: 100px;
+}
+
+.icons {
+  width: 40px;
+  height: 40px;
+}
+
 .cart-single {
   width: 100%;
   padding: 20px;
@@ -339,7 +365,8 @@ span.price {
   margin-left: 50px;
 }
 
-.cart-items, .cart-total  {
+.cart-items,
+.cart-total {
   border: 1px solid #d4e7ee;
   padding: 10px 25px 45px 45px;
   margin-bottom: 40px;

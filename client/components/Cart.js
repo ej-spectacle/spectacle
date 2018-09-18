@@ -37,7 +37,7 @@ class Cart extends Component {
                   <h3>${order.glass.price}</h3>
                   <button type="submit" onClick={() => this.handleDelete(order.id)}>
                     Delete
-                </button>
+                  </button>
                 </div>
               </div>
             );
@@ -51,10 +51,10 @@ class Cart extends Component {
         </div>
       </div>
     ) : (
-        <div>
-          <h3>Your cart is empty.</h3>
-        </div>
-      );
+      <div>
+        <h3>Your cart is empty.</h3>
+      </div>
+    );
   }
 }
 
