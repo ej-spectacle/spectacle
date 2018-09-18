@@ -83,6 +83,7 @@ class Checkout extends Component {
 
   render() {
     const createdGuest = this.props.user;
+    console.log(this.props);
 
     return (
       <div>

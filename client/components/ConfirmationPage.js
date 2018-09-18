@@ -4,63 +4,45 @@ import { connect } from 'react-redux';
 class ConfirmationPage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: {
-        firstName: '',
-        lastName: '',
-        email: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: '',
-      },
-    };
+    this.state = {};
   }
 
-  componentDidMount() {
-    this.setState({
-      ...this.props.user,
-    });
-  }
+  componentDidMount() {}
 
   render() {
-    const { user, order } = this.props;
-    console.log('state', this.state);
+    const confirmedOrder = this.props.confirmedOrder;
+    const user = this.props.confirmedOrder[0].user;
 
     return (
       <div>
         <h1>Thank you for your order!</h1>
-        <h4>Order reference is #{order ? order.refNumber : 555}</h4>
+        <h4>Order reference is #{confirmedOrder[0].refNumber}</h4>
         <div className="confirmation-page-container">
           <div className="confirmation-page-shipping">
             <h1>Shipment Details</h1>
-            {!this.state.user ? null : (
+            {!confirmedOrder ? null : (
               <ul>
                 <li>
-                  {this.state.firstName} {this.state.lastName}
+                  {user.firstName} {user.lastName}
                 </li>
-                <li>{this.state.address}</li>
+                <li>{user.address}</li>
                 <li>
-                  {this.state.city}, {this.state.state} {this.state.zip}
+                  {user.city}, {user.state} {user.zip}
                 </li>
-                <li>{this.state.email}</li>
+                <li>{user.email}</li>
               </ul>
             )}
           </div>
 
           <div className="confirmation-page-items">
             <h1>Ordered Items</h1>
-            {/* <ul>
-              {orders.length
+            <ul>
+              {!confirmedOrder.length
                 ? null
-                : orders.map(order => {
-                    return (
-                      <li className="order-item" key={order.id}>
-                        {order.id}
-                      </li>
-                    );
+                : confirmedOrder.map(item => {
+                    return <li>{item.name}</li>;
                   })}
-            </ul> */}
+            </ul>
           </div>
         </div>
       </div>
@@ -70,18 +52,12 @@ class ConfirmationPage extends Component {
 
 const mapStateToProps = state => {
   return {
-    order: state.order,
-    user: state.user,
-    cart: state.cart,
+    confirmedOrder: state.completedOrders,
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    updateUser: user => {
-      dispatch(update(user));
-    },
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ConfirmationPage);
