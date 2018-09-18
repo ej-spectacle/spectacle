@@ -34,7 +34,7 @@ class SingleGlasses extends Component {
         <img className="single-glasses-image" src={singleGlasses.imageUrl} />
         <div className="single-glasses-info">
           <h3>{singleGlasses.name}</h3>
-          <h3>{available ? `${singleGlasses.price}` : 'Unavailable'}</h3>
+          <h3>{available ? `$${singleGlasses.price}` : 'Unavailable'}</h3>
         </div>
         <button
           type="submit"

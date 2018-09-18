@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import { addCompletedOrder } from './completedOrders';
+import { addCompletedOrder, clearCompletedOrder } from './completedOrders';
 
 const GET_ORDERS = 'GET_ORDERS';
 const ADD_ORDER = 'ADD_ORDER';
@@ -72,6 +72,7 @@ export const postOrder = order => async dispatch => {
 export const purchase = order => async dispatch => {
   try {
     await axios.put(`/api/orders/${order.id}`, order);
+    dispatch(clearCompletedOrder());
     dispatch(addCompletedOrder(order));
     dispatch(purchaseOrder(order.id));
   } catch (error) {
