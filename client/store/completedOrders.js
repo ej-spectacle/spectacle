@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const GET_PURCHASED_ORDERS = 'GET_PURCHASED_ORDERS';
+const ADD_COMPLETED_ORDER = 'ADD_COMPLETED_ORDER';
 
 const getOrderHistory = orders => {
   return {
@@ -8,6 +9,13 @@ const getOrderHistory = orders => {
     orders: orders,
   };
 };
+
+export const addCompletedOrder = order => {
+  return {
+    type: ADD_COMPLETED_ORDER,
+    order
+  }
+}
 
 export const fetchOrderHistory = id => async dispatch => {
   console.log('dispatched!');
@@ -19,10 +27,12 @@ export const fetchOrderHistory = id => async dispatch => {
   }
 };
 
-export default function(state = [], action) {
+export default function (state = [], action) {
   switch (action.type) {
     case GET_PURCHASED_ORDERS:
       return action.orders;
+    case ADD_COMPLETED_ORDER:
+      return [...state, action.order];
     default:
       return state;
   }
