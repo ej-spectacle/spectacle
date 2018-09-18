@@ -32,27 +32,29 @@ class Cart extends Component {
             return (
               <div className="cart-single" key={order.id}>
                 <img src={order.glass.imageUrl} />
-                <h3>{order.glass.name}</h3>
-                <h3>{order.glass.price}</h3>
-                <button type="submit" onClick={() => this.handleDelete(order.id)}>
-                  Delete
+                <div className="cart-single-info">
+                  <h3>{order.glass.name}</h3>
+                  <h3>${order.glass.price}</h3>
+                  <button type="submit" onClick={() => this.handleDelete(order.id)}>
+                    Delete
                 </button>
+                </div>
               </div>
             );
           })}
         </div>
-        <div className="cart-total">Total: ${total}</div>
-        <div className="cart-purchase">
+        <div className="cart-total">
+          <h2>Total: ${total}</h2>
           <button type="submit">
             <NavLink to="/checkout">Checkout</NavLink>
           </button>
         </div>
       </div>
     ) : (
-      <div>
-        <h3>Your cart is empty.</h3>
-      </div>
-    );
+        <div>
+          <h3>Your cart is empty.</h3>
+        </div>
+      );
   }
 }
 
