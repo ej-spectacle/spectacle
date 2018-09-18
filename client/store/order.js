@@ -1,6 +1,6 @@
 import axios from 'axios';
 import history from '../history';
-import { addCompletedOrder } from './completedOrders'
+import { addCompletedOrder } from './completedOrders';
 
 const GET_ORDERS = 'GET_ORDERS';
 const ADD_ORDER = 'ADD_ORDER';

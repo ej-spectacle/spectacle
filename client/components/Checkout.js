@@ -78,11 +78,14 @@ class Checkout extends Component {
     }
     this.purchase();
     this.setState({ submitted: true });
+    this.props.history.push('/confirmation-page');
+
     // } else return null;
   }
 
   render() {
     const createdGuest = this.props.user;
+    console.log(this.props);
 
     return (
       <div>

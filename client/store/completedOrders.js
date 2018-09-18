@@ -13,9 +13,9 @@ const getOrderHistory = orders => {
 export const addCompletedOrder = order => {
   return {
     type: ADD_COMPLETED_ORDER,
-    order
-  }
-}
+    order,
+  };
+};
 
 export const fetchOrderHistory = id => async dispatch => {
   console.log('dispatched!');
@@ -27,7 +27,7 @@ export const fetchOrderHistory = id => async dispatch => {
   }
 };
 
-export default function (state = [], action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_PURCHASED_ORDERS:
       return action.orders;
