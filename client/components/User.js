@@ -45,7 +45,7 @@ class User extends Component {
                 <Link to="#">
                   <div className="dashboard-container-item">
                     <img className="icons" />
-                    <span> Payment Options</span>
+                    <span>Payment Options</span>
                   </div>
                 </Link>
               </div>
