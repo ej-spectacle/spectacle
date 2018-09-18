@@ -35,11 +35,11 @@ class Routes extends Component {
         <Route exact path="/glasses/:id" component={SingleGlasses} />
         <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/confirmation-page" component={ConfirmationPage} />
+        <Route exact path="/" component={Homepage} />
 
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
             <Route path="/dashboard" component={User} />
           </Switch>
         )}
