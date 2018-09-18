@@ -27,6 +27,7 @@ class OrderHistory extends React.Component {
           {this.props.completedOrders.length > 0 ? (
             <div className="order-group-container">
               {this.props.completedOrders.map(orderGroup => {
+                let orderTotal = 0;
                 return (
                   <div className="order-group" key={orderGroup[0].refNumber}>
                     <h4>Purchased On: {orderGroup[0].purchaseDate.slice(0, 10)}</h4>
@@ -39,18 +40,20 @@ class OrderHistory extends React.Component {
                           <th>Price</th>
                         </tr>
                         {orderGroup.map(order => {
+                          orderTotal += order.price;
                           return (
                             <tr key={`order${order.id}`}>
                               <td>
                                 <img src={order.glass.imageUrl} />
                               </td>
                               <td>{order.glass.name}</td>
-                              <td>$9000</td>
+                              <td>${order.price}</td>
                             </tr>
                           );
                         })}
                       </tbody>
                     </table>
+                    <h4>Order Total: ${orderTotal}</h4>
                   </div>
                 );
               })}

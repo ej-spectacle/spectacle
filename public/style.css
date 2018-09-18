@@ -121,9 +121,8 @@ img {
 .order-group-container {
   display: flex;
   flex-direction: column;
-  width: 70%
+  width: 50%;
 }
-
 
 .order-group {
   background: #e6e6e6;
@@ -137,7 +136,7 @@ img {
 }
 
 .order-group table {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid #e6e6e6;
   border-top: none;
   width: 100%;
