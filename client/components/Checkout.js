@@ -37,15 +37,13 @@ class Checkout extends Component {
       this.props.purchaseOrder({
         ...order,
         price: order.glass.price,
-        userId: order.user.id,
+        userId: this.props.user.id,
         purchaseDate,
         refNumber,
       });
-      this.props.purchaseGlasses({ ...order.glass, available: false })
+      this.props.purchaseGlasses({ ...order.glass, available: false });
     });
   }
-
-
 
   handleChange(evt) {
     const user = this.state.user;
@@ -53,19 +51,19 @@ class Checkout extends Component {
     this.setState({ user });
   }
 
-  async handleSubmit(evt) {
+  handleSubmit(evt) {
     const { isLoggedIn, updateUser, createGuest } = this.props;
     evt.preventDefault();
 
     if (isLoggedIn) {
-      await updateUser(this.state.user);
+      updateUser(this.state.user);
     } else {
-      await createGuest(this.state.user);
+      createGuest(this.state.user);
     }
 
-    await this.purchase();
+    this.purchase();
     this.setState({ submitted: true });
-    this.props.history.push('/confirmation-page')
+    this.props.history.push('/confirmation-page');
   }
 
   render() {
@@ -107,8 +105,8 @@ const mapDispatch = dispatch => ({
     dispatch(guest(user));
   },
   purchaseGlasses: glasses => {
-    dispatch(purchaseGlasses(glasses))
-  }
+    dispatch(purchaseGlasses(glasses));
+  },
 });
 
 export default connect(mapState, mapDispatch)(Checkout);
