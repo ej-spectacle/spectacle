@@ -70,7 +70,7 @@ class Checkout extends Component {
     const createdGuest = this.props.user;
 
     return (
-      <div>
+      <div className="products-container">
         {!this.state.isLoading ? (
           <CheckoutForm
             handleChange={this.handleChange}

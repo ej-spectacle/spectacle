@@ -11,13 +11,39 @@ const CheckoutForm = props => {
       <div className="checkout-header">
         <h1>Checkout</h1>
       </div>
+      <div className="container">
+        <h4>
+          In Your Cart{' '}
+          <span className="price" style={{ color: 'black' }}>
+            <i className="fa fa-shopping-cart" /> <b>{cart.length}</b>
+          </span>
+        </h4>
+        {cart.map(item => {
+          totalPrice += item.glass.price;
+          return (
+            <p key={item.id}>
+              <Link to={`/glasses/${item.glass.id}`}>{item.glass.name}</Link>{' '}
+              <span className="price">${`${item.glass.price}`}</span>
+            </p>
+          );
+        })}
+
+        <hr />
+        <p>
+          <b>Total </b>
+          <span className="price" style={{ color: 'black' }}>
+            <b>${`${totalPrice}`}</b>
+          </span>
+        </p>
+      </div>
       <div className="row">
         <div className="col-75">
           <div className="container">
             <form onSubmit={handleSubmit}>
               <div className="row">
                 <div className="col-50">
-                  <h3>Shipping Address</h3>
+                  <h2>Shipping Address</h2>
+                  <hr />
                   <label htmlFor="firstName">
                     <i className="fa fa-user" /> First Name
                   </label>
@@ -74,62 +100,28 @@ const CheckoutForm = props => {
                     onChange={handleChange}
                     required
                   />
-
-                  <div className="row">
-                    <div className="col-50">
-                      <label htmlFor="state">State</label>
-                      <input
-                        type="text"
-                        name="state"
-                        value={user.state}
-                        placeholder="NY"
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                    <div className="col-50">
-                      <label htmlFor="zip">Zip</label>
-                      <input
-                        type="text"
-                        name="zip"
-                        value={user.zip}
-                        placeholder="10001"
-                        onChange={handleChange}
-                        required
-                      />
-                    </div>
-                  </div>
+                  <label htmlFor="state">State</label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={user.state}
+                    placeholder="NY"
+                    onChange={handleChange}
+                    required
+                  />
+                  <label htmlFor="zip">Zip</label>
+                  <input
+                    type="text"
+                    name="zip"
+                    value={user.zip}
+                    placeholder="10001"
+                    onChange={handleChange}
+                    required
+                  />
                 </div>
               </div>
               <input type="submit" value="Purchase" className="btn" />
             </form>
-          </div>
-        </div>
-        <div className="col-25">
-          <div className="container">
-            <h4>
-              In Your Cart{' '}
-              <span className="price" style={{ color: 'black' }}>
-                <i className="fa fa-shopping-cart" /> <b>{cart.length}</b>
-              </span>
-            </h4>
-            {cart.map(item => {
-              totalPrice += item.glass.price;
-              return (
-                <p key={item.id}>
-                  <Link to={`/glasses/${item.glass.id}`}>{item.glass.name}</Link>{' '}
-                  <span className="price">${`${item.glass.price}`}</span>
-                </p>
-              );
-            })}
-
-            <hr />
-            <p>
-              <b>Total </b>
-              <span className="price" style={{ color: 'black' }}>
-                <b>${`${totalPrice}`}</b>
-              </span>
-            </p>
           </div>
         </div>
       </div>
