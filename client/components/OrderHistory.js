@@ -30,8 +30,10 @@ class OrderHistory extends React.Component {
                 let orderTotal = 0;
                 return (
                   <div className="order-group" key={orderGroup[0].refNumber}>
-                    <h4>Purchased On: {orderGroup[0].purchaseDate.slice(0, 10)}</h4>
-                    <p>Reference Number: {orderGroup[0].refNumber}</p>
+                    <div className="order-heading">
+                      <h4>Purchased On: {orderGroup[0].purchaseDate.slice(0, 10)}</h4>
+                      <p>Reference Number: {orderGroup[0].refNumber}</p>
+                    </div>
                     <table>
                       <tbody>
                         <tr>

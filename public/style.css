@@ -116,20 +116,33 @@ img {
 .orderHistory {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  text-align: center;
 }
 
 .order-group-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 50%;
+  margin: 0 auto;
+}
+
+.order-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .order-group {
   background: #e6e6e6;
   margin-bottom: 20px;
+  border-radius: 5px;
 }
+
 .order-group h4 {
   margin: 5px;
+  text-align: left;
 }
 .order-group p {
   margin: 10px 5px;
