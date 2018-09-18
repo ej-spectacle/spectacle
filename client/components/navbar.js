@@ -6,7 +6,7 @@ import { logout, me, fetchCart } from '../store';
 class Navbar extends Component {
   render() {
     const { handleClick, isLoggedIn, user, cartCount } = this.props;
-    if (this.props.user.id) this.props.fetchCart(this.props.user.id);
+    if (isLoggedIn) this.props.fetchCart(user.id);
 
     return (
       <div>
@@ -34,12 +34,12 @@ class Navbar extends Component {
                 </a>
               </div>
             ) : (
-              <div>
-                {/* The navbar will show these links before you log in */}
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
-              </div>
-            )}
+                <div>
+                  {/* The navbar will show these links before you log in */}
+                  <Link to="/login">Login</Link>
+                  <Link to="/signup">Sign Up</Link>
+                </div>
+              )}
             <Link to="/cart">
               <i className="fa fa-shopping-cart" />Cart {`(${cartCount})`}
             </Link>

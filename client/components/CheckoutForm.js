@@ -117,7 +117,6 @@ const CheckoutForm = props => {
               totalPrice += item.glass.price;
               return (
                 <p key={item.id}>
-                  {console.log('item', item)}
                   <Link to={`/glasses/${item.glass.id}`}>{item.glass.name}</Link>{' '}
                   <span className="price">${`${item.glass.price}`}</span>
                 </p>

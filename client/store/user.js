@@ -65,7 +65,7 @@ export const auth = (email, password, method) => async dispatch => {
 export const update = user => async dispatch => {
   try {
     const res = await axios.put(`/api/users/${user.id}`, user);
-    dispatch(updateUser(res.data));
+    dispatch(updateUser({ ...res.data, isLoggedIn: true }));
   } catch (err) {
     console.error(err);
   }
@@ -85,7 +85,7 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function (state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
       return action.user;
