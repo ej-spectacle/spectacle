@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CheckoutForm from './CheckoutForm';
-import { auth, update, purchase, guest } from '../store';
+import { auth, update, purchase, guest, purchaseGlasses } from '../store';
 import { sha256 } from 'js-sha256';
 
 class Checkout extends Component {
@@ -20,7 +20,6 @@ class Checkout extends Component {
       isLoading: true,
       submitted: false,
     };
-    // this.isValid = this.isValid.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.purchase = this.purchase.bind(this);
@@ -38,27 +37,15 @@ class Checkout extends Component {
       this.props.purchaseOrder({
         ...order,
         price: order.glass.price,
+        userId: order.user.id,
         purchaseDate,
         refNumber,
       });
+      this.props.purchaseGlasses({ ...order.glass, available: false })
     });
   }
 
-  // isValid() {
-  //   const { firstName, lastName, email, address, city, state, zip } = this.state.user;
-  //   if (
-  //     firstName.length > 0 &&
-  //     lastName.length > 0 &&
-  //     email.length > 0 &&
-  //     address.length > 0 &&
-  //     city.length > 0 &&
-  //     state.length > 0 &&
-  //     zip > 0
-  //   ) {
-  //     return true;
-  //   }
-  //   return false;
-  // }
+
 
   handleChange(evt) {
     const user = this.state.user;
@@ -67,18 +54,18 @@ class Checkout extends Component {
   }
 
   handleSubmit(evt) {
-    const { isLoggedIn, updateUser, createGuest, user } = this.props;
+    const { isLoggedIn, updateUser, createGuest } = this.props;
     evt.preventDefault();
 
-    // if (this.isValid()) {
     if (isLoggedIn) {
       updateUser(this.state.user);
     } else {
       createGuest(this.state.user);
     }
+
     this.purchase();
     this.setState({ submitted: true });
-    // } else return null;
+    this.props.history.push('/confirmation-page')
   }
 
   render() {
@@ -101,7 +88,7 @@ class Checkout extends Component {
 }
 
 const mapState = state => ({
-  isLoggedIn: !!state.user.id,
+  isLoggedIn: state.user.isLoggedIn,
   user: state.user,
   cart: state.cart,
 });
@@ -119,6 +106,9 @@ const mapDispatch = dispatch => ({
   createGuest: user => {
     dispatch(guest(user));
   },
+  purchaseGlasses: glasses => {
+    dispatch(purchaseGlasses(glasses))
+  }
 });
 
 export default connect(mapState, mapDispatch)(Checkout);

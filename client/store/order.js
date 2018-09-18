@@ -41,13 +41,6 @@ const purchaseOrder = id => ({
   id,
 });
 
-const updateOrder = order => {
-  return {
-    type: UPDATE_ORDER,
-    order,
-  };
-};
-
 export const fetchOrders = () => async dispatch => {
   try {
     const res = await axios.get('/api/orders');
@@ -95,7 +88,7 @@ export const deleteOrder = id => async dispatch => {
   }
 };
 
-export default function(state = [], action) {
+export default function (state = [], action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.orders;
