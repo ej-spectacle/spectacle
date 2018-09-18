@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const CheckoutForm = props => {
-  const { handleChange, handleSubmit, cartCount, user, wasCreated } = props;
+  const { handleChange, handleSubmit, cart, user, wasCreated } = props;
   const errMessage = wasCreated ? 'hidden' : 'error';
+  let totalPrice = 0;
 
   return (
     <div className="checkout-container">
@@ -25,6 +27,7 @@ const CheckoutForm = props => {
                     value={user.firstName}
                     placeholder="John"
                     onChange={handleChange}
+                    required
                   />
                   <label htmlFor="lastName">
                     <i className="fa fa-user" /> Last Name
@@ -35,6 +38,7 @@ const CheckoutForm = props => {
                     value={user.lastName}
                     placeholder="Doe"
                     onChange={handleChange}
+                    required
                   />
                   <label htmlFor="email">
                     <i className="fa fa-envelope" /> Email
@@ -45,6 +49,7 @@ const CheckoutForm = props => {
                     value={user.email}
                     placeholder="john@example.com"
                     onChange={handleChange}
+                    required
                   />
                   <span className={errMessage}>User with that email already exists.</span>
                   <label htmlFor="adress">
@@ -56,6 +61,7 @@ const CheckoutForm = props => {
                     value={user.address}
                     placeholder="542 W. 15th Street"
                     onChange={handleChange}
+                    required
                   />
                   <label htmlFor="city">
                     <i className="fa fa-institution" /> City
@@ -66,6 +72,7 @@ const CheckoutForm = props => {
                     value={user.city}
                     placeholder="New York"
                     onChange={handleChange}
+                    required
                   />
 
                   <div className="row">
@@ -77,6 +84,7 @@ const CheckoutForm = props => {
                         value={user.state}
                         placeholder="NY"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                     <div className="col-50">
@@ -87,6 +95,7 @@ const CheckoutForm = props => {
                         value={user.zip}
                         placeholder="10001"
                         onChange={handleChange}
+                        required
                       />
                     </div>
                   </div>
@@ -99,28 +108,26 @@ const CheckoutForm = props => {
         <div className="col-25">
           <div className="container">
             <h4>
-              Cart{' '}
+              In Your Cart{' '}
               <span className="price" style={{ color: 'black' }}>
-                <i className="fa fa-shopping-cart" /> <b>{cartCount}</b>
+                <i className="fa fa-shopping-cart" /> <b>{cart.length}</b>
               </span>
             </h4>
-            <p>
-              <a href="#">Product 1</a> <span className="price">$15</span>
-            </p>
-            <p>
-              <a href="#">Product 2</a> <span className="price">$5</span>
-            </p>
-            <p>
-              <a href="#">Product 3</a> <span className="price">$8</span>
-            </p>
-            <p>
-              <a href="#">Product 4</a> <span className="price">$2</span>
-            </p>
+            {cart.map(item => {
+              totalPrice += item.glass.price;
+              return <p key={item.id}>
+                {console.log('item', item)}
+                <Link to={`/glasses/${item.glass.id}`}>{item.glass.name}</Link> <span className="price">${`${item.glass.price}`}</span>
+              </p>
+            })
+            }
+
+
             <hr />
             <p>
-              Total{' '}
+              <b>Total{' '}</b>
               <span className="price" style={{ color: 'black' }}>
-                <b>$30</b>
+                <b>${`${totalPrice}`}</b>
               </span>
             </p>
           </div>
