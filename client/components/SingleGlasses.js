@@ -25,19 +25,23 @@ class SingleGlasses extends Component {
   }
   render() {
     const singleGlasses = this.props.singleGlasses[0];
+    console.log('glass', singleGlasses);
+    let available = false;
+    if (singleGlasses) available = singleGlasses.available;
 
     return !singleGlasses ? null : (
       <div className="single-glasses-container products-container single-card">
         <img className="single-glasses-image" src={singleGlasses.imageUrl} />
         <div className="single-glasses-info">
           <h3>{singleGlasses.name}</h3>
-          <h3>${singleGlasses.price}</h3>
+          <h3>{available ? `${singleGlasses.price}` : 'Unavailable'}</h3>
         </div>
         <button
           type="submit"
           onClick={this.handleSubmit}
           disabled={
-            this.props.cart.filter(order => order.glassId === singleGlasses.id).length === 1
+            this.props.cart.filter(order => order.glassId === singleGlasses.id).length === 1 ||
+            !available
               ? true
               : null
           }
