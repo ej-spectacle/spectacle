@@ -43,10 +43,11 @@ router.put('/:id', async (req, res, next) => {
 });
 
 router.delete('/:id', async (req, res, next) => {
+  console.log('req user', req.user);
   if (req.user) {
     try {
       const deletedOrder = await Order.findById(req.params.id);
-      if (req.user.dataValues.id === deletedOrder.userId || req.user.dataValues.isAdmin) {
+      if (req.user.id === deletedOrder.userId || req.user.dataValues.isAdmin) {
         deletedOrder.destroy();
         res.sendStatus(204);
       } else {

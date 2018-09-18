@@ -8,21 +8,21 @@ const CLEAR_CART = 'CLEAR_CART';
 const PURCHASE_ORDER = 'PURCHASE_ORDER';
 const UPDATE_ORDER = 'UPDATE_ORDER';
 
-const getOrders = (orders) => {
+const getOrders = orders => {
   return {
     type: GET_ORDERS,
     orders,
   };
 };
 
-const addOrder = (order) => {
+const addOrder = order => {
   return {
     type: ADD_ORDER,
     order,
   };
 };
 
-const removeOrder = (id) => {
+const removeOrder = id => {
   return {
     type: REMOVE_ORDER,
     id,
@@ -31,13 +31,13 @@ const removeOrder = (id) => {
 
 export const clearCart = () => {
   return {
-    type: CLEAR_CART
-  }
-}
+    type: CLEAR_CART,
+  };
+};
 
-const purchaseOrder = (id) => ({
+const purchaseOrder = id => ({
   type: PURCHASE_ORDER,
-  id
+  id,
 });
 
 const updateOrder = order => {
@@ -84,16 +84,19 @@ export const purchase = order => async dispatch => {
   }
 };
 
-export const deleteOrder = id => async dispatch => {
+export const deleteOrder = (id, userId = 0) => async dispatch => {
   try {
-    await axios.delete(`/api/orders/${id}`);
+    if (userId) {
+      console.log('in delete order reducer');
+      await axios.delete(`/api/orders/${id}`);
+    }
     dispatch(removeOrder(id));
   } catch (error) {
     console.log(error);
   }
 };
 
-export default function (state = [], action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.orders;
