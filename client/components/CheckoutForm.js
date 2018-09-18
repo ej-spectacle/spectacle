@@ -115,16 +115,17 @@ const CheckoutForm = props => {
             </h4>
             {cart.map(item => {
               totalPrice += item.glass.price;
-              return <p key={item.id}>
-                <Link to={`/glasses/${item.glass.id}`}>{item.glass.name}</Link> <span className="price">${`${item.glass.price}`}</span>
-              </p>
-            })
-            }
-
+              return (
+                <p key={item.id}>
+                  <Link to={`/glasses/${item.glass.id}`}>{item.glass.name}</Link>{' '}
+                  <span className="price">${`${item.glass.price}`}</span>
+                </p>
+              );
+            })}
 
             <hr />
             <p>
-              <b>Total{' '}</b>
+              <b>Total </b>
               <span className="price" style={{ color: 'black' }}>
                 <b>${`${totalPrice}`}</b>
               </span>

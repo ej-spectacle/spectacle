@@ -279,3 +279,7 @@ span.price {
 .homepage-container {
   text-align: center;
 }
+
+.confirmation-page-shipment-details {
+  list-style-type: none;
+}
