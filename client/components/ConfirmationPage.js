@@ -15,7 +15,7 @@ class ConfirmationPage extends Component {
           <div className="confirmation-page-shipping">
             <h1>Shipment Details</h1>
             {!confirmedOrder.length ? null : (
-              <ul>
+              <ul className="confirmation-page-shipment-details">
                 <li>
                   {user.firstName} {user.lastName}
                 </li>
