@@ -91,7 +91,7 @@ class Checkout extends Component {
             handleChange={this.handleChange}
             handleSubmit={this.handleSubmit}
             user={this.state.user}
-            cartCount={this.props.cartCount}
+            cart={this.props.cart}
             wasCreated={this.state.submitted ? createdGuest.wasCreated : true}
           />
         ) : null}
@@ -103,7 +103,6 @@ class Checkout extends Component {
 const mapState = state => ({
   isLoggedIn: !!state.user.id,
   user: state.user,
-  cartCount: state.cart.length,
   cart: state.cart,
 });
 
