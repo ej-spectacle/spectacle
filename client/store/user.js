@@ -55,8 +55,8 @@ export const auth = (email, password, method) => async dispatch => {
   }
 
   try {
-    dispatch(getUser(res.data));
-    history.push('/home');
+    dispatch(getUser({ ...res.data, isLoggedIn: true }));
+    history.push('/');
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr);
   }
