@@ -32,7 +32,7 @@ class Checkout extends Component {
 
   purchase() {
     const purchaseDate = new Date();
-    const refNumber = sha256(`${purchaseDate} ${this.props.user.email}`).slice(0,10);
+    const refNumber = sha256(`${purchaseDate} ${this.props.user.email}`).slice(0, 10);
     const orders = this.props.cart || [];
     orders.map(order => {
       this.props.purchaseOrder({
