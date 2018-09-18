@@ -37,7 +37,7 @@ if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
       defaults: { name, email },
     })
       .then(([user]) => {
-        done(null, { ...user.dataValues, isLoggedIn: true })
+        done(null, { ...user.dataValues, isLoggedIn: true });
       })
       .catch(done);
   });
