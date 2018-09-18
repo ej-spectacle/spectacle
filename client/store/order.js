@@ -91,7 +91,7 @@ export const deleteOrder = (id, userId = 0) => async dispatch => {
   }
 };
 
-export default function (state = [], action) {
+export default function(state = [], action) {
   switch (action.type) {
     case GET_ORDERS:
       return action.orders;
