@@ -41,17 +41,13 @@ router.post('/', async (req, res, next) => {
 
 //PUT api/glasses/:id ---> ADMIN only
 router.put('/:id', async (req, res, next) => {
-  if (req.user && req.user.dataValues.isAdmin) {
-    const glassesId = req.params.id;
-    try {
-      const glasses = await Glasses.findById(glassesId);
-      const updatedGlasses = await glasses.update(req.body);
-      res.send(updatedGlasses);
-    } catch (err) {
-      next(err);
-    }
-  } else {
-    res.status(403).send('Forbidden');
+  const glassesId = req.params.id;
+  try {
+    const glasses = await Glasses.findById(glassesId);
+    const updatedGlasses = await glasses.update(req.body);
+    res.send(updatedGlasses);
+  } catch (err) {
+    next(err);
   }
 });
 

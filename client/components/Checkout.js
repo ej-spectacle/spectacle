@@ -53,24 +53,23 @@ class Checkout extends Component {
     this.setState({ user });
   }
 
-  handleSubmit(evt) {
+  async handleSubmit(evt) {
     const { isLoggedIn, updateUser, createGuest } = this.props;
     evt.preventDefault();
 
     if (isLoggedIn) {
-      updateUser(this.state.user);
+      await updateUser(this.state.user);
     } else {
-      createGuest(this.state.user);
+      await createGuest(this.state.user);
     }
 
-    this.purchase();
+    await this.purchase();
     this.setState({ submitted: true });
     this.props.history.push('/confirmation-page')
   }
 
   render() {
     const createdGuest = this.props.user;
-    console.log(this.props);
 
     return (
       <div>
