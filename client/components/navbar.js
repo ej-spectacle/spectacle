@@ -9,20 +9,24 @@ class Navbar extends Component {
     if (isLoggedIn) this.props.fetchCart(user.id);
 
     return (
-      <div>
-        <h1>Elton John Sunglasses</h1>
+      <div className="navbar">
         <nav>
-          <div className="nav-left">
+          <div className="nav-left nav-child">
             <Link to="/">Home</Link>
             <Link to="/glasses">Glasses</Link>
           </div>
-          <div className="nav-right">
+          <div className="nav-center nav-child">
+            <h1>
+              <b>Elton John Sunglasses</b>
+            </h1>
+          </div>
+          <div className="nav-right nav-child">
             {isLoggedIn ? (
               <div>
                 {/* The navbar will show these links after you log in */}
                 <div className="dropdown">
                   <button type="submit" className="dropbtn">
-                    {user.email}
+                    {user.email} <i className="arrow" />
                   </button>
                   <div className="dropdown-content">
                     <a href="/dashboard">Dashboard</a>
@@ -41,11 +45,10 @@ class Navbar extends Component {
               </div>
             )}
             <Link to="/cart">
-              <i className="fa fa-shopping-cart" />Cart {`(${cartCount})`}
+              <i className="fa fa-shopping-cart" /> Cart {`(${cartCount})`}
             </Link>
           </div>
         </nav>
-        <hr />
       </div>
     );
   }
