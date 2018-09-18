@@ -121,20 +121,36 @@ img {
 .order-group-container {
   display: flex;
   flex-direction: column;
+  width: 70%
 }
 
-.order-group-container table {
-  border: 1px solid #565656;
-  width: 70%;
+
+.order-group {
+  background: #e6e6e6;
+  margin-bottom: 20px;
+}
+.order-group h4 {
+  margin: 5px;
+}
+.order-group p {
+  margin: 10px 5px;
+}
+
+.order-group table {
+  background: #FFFFFF;
+  border: 1px solid #e6e6e6;
+  border-top: none;
+  width: 100%;
   table-layout: fixed;
   text-align: center;
+  z-index: 5;
 }
-.order-group-container tr > td:first-child {
+.order-group tr > td:first-child {
   width: 100px;
   height: 100px;
 }
 
-.order-group-container img {
+.order-group img {
   height: 100%;
   width: 100px;
 }

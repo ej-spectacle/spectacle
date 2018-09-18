@@ -37,7 +37,6 @@ class OrderHistory extends React.Component {
                           <th />
                           <th>Item Name</th>
                           <th>Price</th>
-                          <th>Date Purchased</th>
                         </tr>
                         {orderGroup.map(order => {
                           return (
@@ -46,8 +45,7 @@ class OrderHistory extends React.Component {
                                 <img src={order.glass.imageUrl} />
                               </td>
                               <td>{order.glass.name}</td>
-                              <td>${order.price}</td>
-                              <td>{order.purchaseDate.slice(0, 10)}</td>
+                              <td>$9000</td>
                             </tr>
                           );
                         })}
