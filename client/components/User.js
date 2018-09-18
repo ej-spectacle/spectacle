@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { fetchUsers } from '../store';
 import { connect } from 'react-redux';
 
@@ -8,8 +9,6 @@ class User extends Component {
   }
 
   render() {
-    console.log('my users', this.props);
-
     return (
       <div>
         {this.props.currentUser ? (
@@ -29,9 +28,27 @@ class User extends Component {
             </div>
           ) : (
             <div className="user-dashboard">
-              <h1>This is the User Dashboard</h1>
-              <h3>Order History</h3>
-              <h3>Edit Profile Info</h3>
+              <h1>Dashboard</h1>
+              <div>
+                <Link to="/orders">
+                  <div className="dashboard-container-item">
+                    <img className="icons" />
+                    <span> Order History</span>
+                  </div>
+                </Link>
+                <Link to="#">
+                  <div className="dashboard-container-item">
+                    <img className="icons" />
+                    <span> Account Details</span>
+                  </div>
+                </Link>
+                <Link to="#">
+                  <div className="dashboard-container-item">
+                    <img className="icons" />
+                    <span> Payment Options</span>
+                  </div>
+                </Link>
+              </div>
             </div>
           )
         ) : null}

@@ -283,3 +283,28 @@ span.price {
 .confirmation-page-shipment-details {
   list-style-type: none;
 }
+
+.dashboard-container-item {
+  border: 2px black solid;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding: 45px;
+  width: 100px;
+  display: flex;
+  align-items: baseline;
+  font-size: 25px;
+}
+
+.dashboard-container-item:hover {
+  border: 2px black solid;
+  background: lightgray;
+  margin: 0 auto;
+  margin-bottom: 25px;
+  padding: 45px;
+  width: 100px;
+}
+
+.icons {
+  width: 40px;
+  height: 40px;
+}
