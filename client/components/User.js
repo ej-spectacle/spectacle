@@ -32,19 +32,16 @@ class User extends Component {
               <div>
                 <Link to="/orders">
                   <div className="dashboard-container-item">
-                    <img className="icons" />
                     <span> Order History</span>
                   </div>
                 </Link>
                 <Link to="#">
                   <div className="dashboard-container-item">
-                    <img className="icons" />
                     <span> Account Details</span>
                   </div>
                 </Link>
                 <Link to="#">
                   <div className="dashboard-container-item">
-                    <img className="icons" />
                     <span>Payment Options</span>
                   </div>
                 </Link>
