@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const GET_PURCHASED_ORDERS = 'GET_PURCHASED_ORDERS';
 const ADD_COMPLETED_ORDER = 'ADD_COMPLETED_ORDER';
+const CLEAR_COMPLETED_ORDER = 'CLEAR_COMPLETED_ORDER';
 
 const getOrderHistory = orders => {
   return {
@@ -14,6 +15,12 @@ export const addCompletedOrder = order => {
   return {
     type: ADD_COMPLETED_ORDER,
     order,
+  };
+};
+
+export const clearCompletedOrder = () => {
+  return {
+    type: CLEAR_COMPLETED_ORDER,
   };
 };
 
@@ -32,6 +39,8 @@ export default function(state = [], action) {
       return action.orders;
     case ADD_COMPLETED_ORDER:
       return [...state, action.order];
+    case CLEAR_COMPLETED_ORDER:
+      return [];
     default:
       return state;
   }
