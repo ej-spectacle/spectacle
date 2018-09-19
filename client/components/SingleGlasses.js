@@ -38,11 +38,12 @@ class SingleGlasses extends Component {
           <h3>{available ? `$${addCommasToNum(singleGlasses.price)}` : 'Unavailable'}</h3>
         </div>
         <button
+          className="button"
           type="submit"
           onClick={this.handleSubmit}
           disabled={
             this.props.cart.filter(order => order.glassId === singleGlasses.id).length === 1 ||
-            !available
+              !available
               ? true
               : null
           }
