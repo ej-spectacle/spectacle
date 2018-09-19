@@ -50,7 +50,6 @@ class OrderHistory extends React.Component {
                                 <img src={order.glass.imageUrl} />
                               </td>
                               <td>{order.glass.name}</td>
-                              {console.log(order.price)}
                               <td>${addCommasToNum(order.price)}</td>
                             </tr>
                           );
