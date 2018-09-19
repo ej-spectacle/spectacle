@@ -345,11 +345,11 @@ span.price {
 .dashboard-container-item {
   border: 2px black solid;
   margin: 0 auto;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   padding: 45px;
   width: 100px;
   display: flex;
-  align-items: baseline;
+  justify-content: baseline;
   font-size: 25px;
 }
 
@@ -357,7 +357,7 @@ span.price {
   border: 2px black solid;
   background: lightgray;
   margin: 0 auto;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   padding: 45px;
   width: 100px;
 }
