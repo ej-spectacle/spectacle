@@ -33,9 +33,13 @@ nav a {
   margin: 1em;
 }
 
-form div {
+.auth-form-fields {
   margin: 1em;
   display: inline-block;
+}
+
+.auth-form-button {
+  margin: 1em;
 }
 
 h3 {
@@ -55,7 +59,7 @@ img {
 }
 
 .single-card {
-  height: 300px;
+  height: 400px;
   width: 300px;
   border: 1px solid #d4e7ee;
   margin-bottom: 20px;
@@ -313,6 +317,10 @@ span.price {
   width: 350px;
 }
 
+.single-glasses-info {
+  margin-bottom: 10px;
+}
+
 .hidden {
   display: none;
 }
@@ -387,4 +395,35 @@ span.price {
   font-size: 12px;
   transition-duration: 0.3s;
   align-self: center;
+}
+
+.delete-btn {
+  background-color: #f44336;
+  margin: 5px;
+}
+
+.checkout-btn {
+  margin: 5px;
+  width: 120px;
+  height: 35px;
+}
+
+.checkout-btn a {
+  color: white;
+  font-size: 16px;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.auth-link {
+  margin-left: 15px;
+}
+
+.auth-form {
+  width: 500px;
+  text-align: center;
+  margin: 0 auto;
 }

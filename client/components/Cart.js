@@ -35,7 +35,7 @@ class Cart extends Component {
                 <div className="cart-single-info">
                   <h3>{order.glass.name}</h3>
                   <h3>${order.glass.price}</h3>
-                  <button type="submit" onClick={() => this.handleDelete(order.id)}>
+                  <button type="submit" className="button delete-btn" onClick={() => this.handleDelete(order.id)}>
                     Delete
                   </button>
                 </div>
@@ -45,16 +45,16 @@ class Cart extends Component {
         </div>
         <div className="cart-total">
           <h2>Total: ${total}</h2>
-          <button type="submit">
+          <button type="submit" className="button checkout-btn">
             <NavLink to="/checkout">Checkout</NavLink>
           </button>
         </div>
       </div>
     ) : (
-      <div>
-        <h3>Your cart is empty.</h3>
-      </div>
-    );
+        <div className="products-container">
+          <h3>Your cart is empty.</h3>
+        </div>
+      );
   }
 }
 
