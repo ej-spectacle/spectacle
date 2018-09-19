@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import addCommasToNum from '../../utils';
 
 const CheckoutForm = props => {
   const { handleChange, handleSubmit, cart, user, wasCreated } = props;
@@ -23,7 +24,7 @@ const CheckoutForm = props => {
           return (
             <p key={item.id}>
               <Link to={`/glasses/${item.glass.id}`}>{item.glass.name}</Link>{' '}
-              <span className="price">${`${item.glass.price}`}</span>
+              <span className="price">${`${addCommasToNum(item.glass.price)}`}</span>
             </p>
           );
         })}
@@ -32,7 +33,7 @@ const CheckoutForm = props => {
         <p>
           <b>Total </b>
           <span className="price" style={{ color: 'black' }}>
-            <b>${`${totalPrice}`}</b>
+            <b>${`${addCommasToNum(totalPrice)}`}</b>
           </span>
         </p>
       </div>

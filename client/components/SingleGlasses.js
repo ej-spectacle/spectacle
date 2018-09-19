@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchSingleGlasses } from '../store/glasses';
 import { postOrder } from '../store/order';
 import { connect } from 'react-redux';
+import addCommasToNum from '../../utils';
 
 class SingleGlasses extends Component {
   constructor(props) {
@@ -34,7 +35,7 @@ class SingleGlasses extends Component {
         <img className="single-glasses-image" src={singleGlasses.imageUrl} />
         <div className="single-glasses-info">
           <h3>{singleGlasses.name}</h3>
-          <h3>{available ? `${singleGlasses.price}` : 'Unavailable'}</h3>
+          <h3>{available ? `$${addCommasToNum(singleGlasses.price)}` : 'Unavailable'}</h3>
         </div>
         <button
           type="submit"

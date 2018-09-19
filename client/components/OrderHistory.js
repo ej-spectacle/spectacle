@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchOrderHistory } from '../store/completedOrders';
+import addCommasToNum from '../../utils';
 
 class OrderHistory extends React.Component {
   constructor() {
@@ -49,13 +50,14 @@ class OrderHistory extends React.Component {
                                 <img src={order.glass.imageUrl} />
                               </td>
                               <td>{order.glass.name}</td>
-                              <td>${order.price}</td>
+                              {console.log(order.price)}
+                              <td>${addCommasToNum(order.price)}</td>
                             </tr>
                           );
                         })}
                       </tbody>
                     </table>
-                    <h4>Order Total: ${orderTotal}</h4>
+                    <h4>Order Total: ${addCommasToNum(orderTotal)}</h4>
                   </div>
                 );
               })}

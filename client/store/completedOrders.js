@@ -18,7 +18,6 @@ export const addCompletedOrder = order => {
 };
 
 export const fetchOrderHistory = id => async dispatch => {
-  console.log('dispatched!');
   try {
     const orders = await axios.get(`/api/users/${id}/completed-orders`);
     dispatch(getOrderHistory(orders.data));
