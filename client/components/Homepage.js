@@ -7,7 +7,7 @@ const Homepage = props => {
       <h1>The only place to find your pair of Elton John sunglasess</h1>
       <img src={'glasses.gif'} />
       <br />
-      <Link to="/glasses">Browse collection</Link>
+      <Link to="/glasses" className='navlink'>Browse collection</Link>
     </div>
   );
 };
